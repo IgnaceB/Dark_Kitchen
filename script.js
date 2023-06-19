@@ -18,11 +18,38 @@ const food = [
   },
 ];
 // CONST
-let main = document.querySelector("main");
-let container = document.getElementById("container");
+
+ let main=document.querySelector("main")
+ let container=document.getElementById("container")
+ let categories=[]
+
+ // defines every categories that exists and remove dubble
+food.forEach((element) => { 
+  if (categories.includes(element)){
+  }
+  else {
+  categories.push(element.category)
+}
+}
+)
+
+// creating menu of categories
+
+
+// function that sort cards by category
+const SelectCategory = (event) =>{
+  console.log("test")
+/*  container.replaceChildren()
+  let SelectCategory=[]
+  let cat=event.target.id
+
+  createCard(SelectCategory)*/
+}
+
 
 // creating the cards for each food object
-const createCard = () => {
+const createCard = (food) => {
+
   for (let i = 0; i < food.length; i++) {
     // initializing the card
     let card = document.createElement(`div`);
@@ -68,6 +95,10 @@ const createCard = () => {
     }
     // appending the card to the body
     container.appendChild(card);
+
   }
-};
-createCard();
+}
+createCard(food)
+
+
+
