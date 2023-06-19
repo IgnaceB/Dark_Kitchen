@@ -160,103 +160,97 @@ const food = [
     description: `Fried rice recipe where cubes of tofu are cooked in a combination of soy sauce, garlic, ginger and sugar, absorbing the flavors like tender little sponges.`,
     picture: `https://static01.nyt.com/images/2022/01/11/dining/14TOPRECIPES-ROUNDUP-tofu-and-broccoli-fried-rice-copy/kc-tofu-and-broccoli-fried-rice-superJumbo-v2.jpg?quality=75&auto=webp`,
   },
-]
+];
 // CONST
 
- const main=document.querySelector("main")
- const container=document.getElementById("container")
- const menuCat=document.getElementById("category") 
- let categories=[]
+const main = document.querySelector("main");
+const container = document.getElementById("container");
+const menuCat = document.getElementById("category");
+let categories = [];
 
- // defines every categories that exists and remove dubble
-food.forEach((element) => { 
-  for (let i=0; i<element.category.length;i++)
-  if (categories.includes(element.category[i])){
-  }
-  else {
-  categories.push(element.category[i])
-}
-}
-)
-
+// defines every categories that exists and remove dubble
+food.forEach((element) => {
+  for (let i = 0; i < element.category.length; i++)
+    if (categories.includes(element.category[i])) {
+    } else {
+      categories.push(element.category[i]);
+    }
+});
 
 // function that sort cards by category
 const SelectCategory = (event) => {
-  console.log("test")
-    container.replaceChildren()
-  let SelectCategory=[]
+  console.log("test");
+  container.replaceChildren();
+  let SelectCategory = [];
 
-  let cat=event.target.id
-
-
-}
-
-
+  let cat = event.target.id;
+};
 
 /*/*creating menu of categories*/
-const createMenuCat=()=>{
-  for (let i=0; i<categories.length;i++){
-  let createP=document.createElement("p")
-  let createDiv=document.createElement("div")
-  createDiv.className=categories[i]
-  createP.textContent=categories[i]
-  createDiv.appendChild(createP)
-  createDiv.addEventListener('click',SelectCategory)
-  menuCat.appendChild(createDiv)
-
-}
-}
-createMenuCat()
-
-
+const createMenuCat = () => {
+  for (let i = 0; i < categories.length; i++) {
+    let createP = document.createElement("p");
+    let createDiv = document.createElement("div");
+    createDiv.className = categories[i];
+    createP.textContent = categories[i];
+    createDiv.appendChild(createP);
+    createDiv.addEventListener("click", SelectCategory);
+    menuCat.appendChild(createDiv);
+  }
+};
+createMenuCat();
 
 // creating the cards for each food object
 const createCard = (food) => {
   for (let i = 0; i < food.length; i++) {
     // initializing the card
-    let card = document.createElement(`div`)
+    let card = document.createElement(`div`);
 
     // adding the picture
-    let picture = document.createElement(`img`)
-    picture.src = food[i].picture
-    card.appendChild(picture)
+    let picture = document.createElement(`img`);
+    picture.src = food[i].picture;
+    card.appendChild(picture);
+
+    let cardText = document.createElement(`div`);
+    cardText.className = "cardText";
+    card.appendChild(cardText);
 
     // adding the name
-    let paragraph1 = document.createElement(`p`)
-    let name = document.createTextNode(food[i].name)
-    paragraph1.className = "name"
-    card.appendChild(paragraph1)
-    paragraph1.appendChild(name)
+    let paragraph1 = document.createElement(`p`);
+    let name = document.createTextNode(food[i].name);
+    paragraph1.className = "name";
+    cardText.appendChild(paragraph1);
+    paragraph1.appendChild(name);
 
     // adding the category
-    let paragraph2 = document.createElement(`p`)
-    let category = document.createTextNode(food[i].category)
-    paragraph2.className = "category"
-    card.appendChild(paragraph2)
-    paragraph2.appendChild(category)
+    let paragraph2 = document.createElement(`p`);
+    let category = document.createTextNode(food[i].category);
+    paragraph2.className = "category";
+    cardText.appendChild(paragraph2);
+    paragraph2.appendChild(category);
 
     // adding the description
-    let paragraph3 = document.createElement(`p`)
-    let description = document.createTextNode(food[i].description)
-    paragraph3.className = "description"
-    card.appendChild(paragraph3)
-    paragraph3.appendChild(description)
+    let paragraph3 = document.createElement(`p`);
+    let description = document.createTextNode(food[i].description);
+    paragraph3.className = "description";
+    cardText.appendChild(paragraph3);
+    paragraph3.appendChild(description);
 
     // adding the price
-    let paragraph4 = document.createElement(`p`)
-    let price = document.createTextNode(food[i].price)
-    paragraph4.className = "price"
-    card.appendChild(paragraph4)
-    paragraph4.appendChild(price)
+    let paragraph4 = document.createElement(`p`);
+    let price = document.createTextNode(food[i].price);
+    paragraph4.className = "price";
+    cardText.appendChild(paragraph4);
+    paragraph4.appendChild(price);
 
     // set ID
-    card.setAttribute("id", food[i].name)
+    card.setAttribute("id", food[i].name);
     // set class
     for (j = 0; j < food[i].category.length; j++) {
-      card.classList.add(food[i].category[j])
+      card.classList.add(food[i].category[j]);
     }
     // appending the card to the body
-    container.appendChild(card)
+    container.appendChild(card);
   }
-}
-createCard(food)
+};
+createCard(food);
