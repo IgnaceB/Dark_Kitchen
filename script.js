@@ -169,6 +169,7 @@ const food = [
  let categories=[]
  let filter=[]
 
+
  // defines every categories that exists and remove dubble
  const listOfCategories=()=>{
 food.forEach((element) => { 
@@ -177,66 +178,110 @@ food.forEach((element) => {
   }
   else {
   categories.push(element.category[i])
+      }
+    }
+  )
 }
+
+//defining function Menu of categories
+const createMenuCat=(i,menu)=>{
+  let createP=document.createElement("p")
+  let createDiv=document.createElement("div")
+  createDiv.className=categories[i]
+  createP.innerText=categories[i]
+  createDiv.appendChild(createP)
+  createP.addEventListener('click',SelectCategory)
+  menu.appendChild(createDiv)
+
 }
-)
-}
+
+// init the categories
 listOfCategories()
 
 // function that sort cards by category on click on DIV
 const SelectCategory = (event) => {
 
-  let cat=''
-  if (event.target.innerText!=""){
-    cat = event.target.innerText
-  }
-  else {
-    cat=event.target.className
-  }
-filter.push(cat)
-container.replaceChildren()
-categories=[]
+    let cat=''
 
-for (let i = 0; i < food.length; i++) {
+    // delete + reset menu
+    menuCat.replaceChildren()
+    listOfCategories()
 
-if (food[i].category.includes(cat)){
+      for (let i=0; i<categories.length;i++){
+
+      createMenuCat(i,menuCat)
+   }
+
+    //check if you click on p or div
+    if (event.target.innerText!=""){
+      cat = event.target.innerText
+    }
+    else {
+      cat=event.target.className
+    }
+
+  //clean the card container
+  container.replaceChildren()
+  categories=[]
+
+  // create cards
+  for (let i = 0; i < food.length; i++) {
+
+  if (food[i].category.includes(cat)){
 
   createCard(i)
+
+  // create array of the categories that are contained in each object that are called
   for (let j=0; j<food[i].category.length;j++){
-  if (filter.includes(food[i].category)||food[i].category[j]==cat){
+
+    // verification if the value is already inside the array and avoiding to call the value you clicked on
+    if (categories.includes(food[i].category[j])||food[i].category[j]==cat){
+    }
+    else {
+    categories.push(food[i].category[j])
+    }
+    }
+    }
+    else {
+      continue
+    }
   }
-  else {
-  categories.push(food[i].category[j])
-}
-}
-}
-else {
-  continue
-}
-}
 
-menuCat.replaceChildren()
-createMenuCat()
-
-}
-
-
-
-
-/*/*creating menu of categories*/
-const createMenuCat=()=>{
-  for (let i=0; i<categories.length;i++){
-  let createP=document.createElement("p")
+  // looping on the array just updated, and create a div and a p for each value inside the element you clicked 
+  categories.forEach((element,index)=>{
+    let position=document.querySelector('.' + cat)
+      let createP=document.createElement("p")
   let createDiv=document.createElement("div")
-  createDiv.className=categories[i]
-  createP.textContent=categories[i]
+  createDiv.className=categories[index]
+  createP.innerText=categories[index]
   createDiv.appendChild(createP)
-  createDiv.addEventListener('click',SelectCategory)
-  menuCat.appendChild(createDiv)
 
+  // creating special event listener that display the combine value of both
+  createDiv.addEventListener('click',(event)=> {
+      container.replaceChildren()
+      for (let i = 0; i < food.length; i++) {
+
+  if (food[i].category.includes(cat) && food[i].category.includes(event.target.innerText)){
+
+      createCard(i)
+
+    }
+  else {
+
+    continue
+  }
+  }
+})
+  // positioning the subCat
+  position.appendChild(createDiv)
+})
 }
+
+
+/*init menu of categories*/
+for (let i=0; i<categories.length;i++){
+createMenuCat(i,menuCat)
 }
-createMenuCat()
 
 // Defining function to create cards
 const createCard=(i)=>{
@@ -291,7 +336,6 @@ const createCard=(i)=>{
 // Initialization creating the cards for each food object
 
   for (let i = 0; i < food.length; i++) {
-   
     createCard(i)
   }
 
