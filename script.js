@@ -17,34 +17,57 @@ const food = [
       "https://static01.nyt.com/images/2022/03/17/dining/14TOPRECIPES-ROUNDUP-sticky-coconut-chicken-and-rice-copy/merlin_202696401_f3bea8d6-0e32-4f31-a0ba-5238e30c50a9-superJumbo.jpg?quality=75&auto=webp",
   },
 ];
+// CONST
+let main = document.querySelector("main");
+let container = document.getElementById("container");
 
 // creating the cards for each food object
-for (let i = 0; i < food.length; i++) {
-  // initializing the card
-  let card = document.createElement(`div`);
-  // adding the picture
-  let picture = document.createElement(`img`);
-  picture.src = food[i].picture;
-  picture.className = ``;
-  card.appendChild(picture);
-  // adding the name
-  let name = document.createTextNode(food[i].name);
-  card.appendChild(name);
-  // adding the category
-  let category = document.createTextNode(food[i].category);
-  card.appendChild(category);
-  // adding the description
-  let description = document.createTextNode(food[i].description);
-  card.appendChild(description);
-  // adding the price
-  let price = document.createTextNode(food[i].price);
-  card.appendChild(price);
-  // set ID
-  card.setAttribute("id", food[i].name);
-  // set class
-  for (j = 0; j < food[i].category.length; j++) {
-    card.classList.add(food[i].category[j]);
+const createCard = () => {
+  for (let i = 0; i < food.length; i++) {
+    // initializing the card
+    let card = document.createElement(`div`);
+
+    // adding the picture
+    let picture = document.createElement(`img`);
+    picture.src = food[i].picture;
+    card.appendChild(picture);
+
+    // adding the name
+    let paragraph1 = document.createElement(`p`);
+    let name = document.createTextNode(food[i].name);
+    paragraph1.className = "name";
+    card.appendChild(paragraph1);
+    paragraph1.appendChild(name);
+
+    // adding the category
+    let paragraph2 = document.createElement(`p`);
+    let category = document.createTextNode(food[i].category);
+    paragraph2.className = "category";
+    card.appendChild(paragraph2);
+    paragraph2.appendChild(category);
+
+    // adding the description
+    let paragraph3 = document.createElement(`p`);
+    let description = document.createTextNode(food[i].description);
+    paragraph3.className = "description";
+    card.appendChild(paragraph3);
+    paragraph3.appendChild(description);
+
+    // adding the price
+    let paragraph4 = document.createElement(`p`);
+    let price = document.createTextNode(food[i].price);
+    paragraph4.className = "price";
+    card.appendChild(paragraph4);
+    paragraph4.appendChild(price);
+
+    // set ID
+    card.setAttribute("id", food[i].name);
+    // set class
+    for (j = 0; j < food[i].category.length; j++) {
+      card.classList.add(food[i].category[j]);
+    }
+    // appending the card to the body
+    container.appendChild(card);
   }
-  // appending the card to the body
-  document.body.appendChild(card);
-}
+};
+createCard();
