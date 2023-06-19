@@ -169,6 +169,7 @@ const food = [
  let categories=[]
 
  // defines every categories that exists and remove dubble
+ const listOfCategories=()=>{
 food.forEach((element) => { 
   for (let i=0; i<element.category.length;i++)
   if (categories.includes(element.category[i])){
@@ -178,18 +179,44 @@ food.forEach((element) => {
 }
 }
 )
-
-
-// function that sort cards by category
-const SelectCategory = (event) => {
-  console.log("test")
-    container.replaceChildren()
-  let SelectCategory=[]
-
-  let cat=event.target.id
-
-
 }
+listOfCategories()
+
+// function that sort cards by category on click on DIV
+const SelectCategory = (event) => {
+
+  let cat=''
+  if (event.target.innerText!=""){
+    cat = event.target.innerText
+  }
+  else {
+    cat=event.target.className
+  }
+
+container.replaceChildren()
+categories=[]
+
+for (let i = 0; i < food.length; i++) {
+
+if (food[i].category.includes(cat)){
+
+  createCard(i)
+  for (let j=0; j<food[i].category.length;j++){
+  if (categories.includes(food[i].category[j])){
+  }
+  else {
+  categories.push(food[i].category[j])
+}
+}
+}
+else {
+  continue
+}
+}
+menuCat.replaceChildren()
+createMenuCat()
+}
+
 
 
 
@@ -208,11 +235,9 @@ const createMenuCat=()=>{
 }
 createMenuCat()
 
+// Defining function to create cards
+const createCard=(i)=>{
 
-
-// creating the cards for each food object
-const createCard = (food) => {
-  for (let i = 0; i < food.length; i++) {
     // initializing the card
     let card = document.createElement(`div`)
 
@@ -257,6 +282,14 @@ const createCard = (food) => {
     }
     // appending the card to the body
     container.appendChild(card)
-  }
 }
-createCard(food)
+
+
+// Initialization creating the cards for each food object
+
+  for (let i = 0; i < food.length; i++) {
+   
+    createCard(i)
+  }
+
+
