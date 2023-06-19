@@ -167,6 +167,7 @@ const food = [
  const container=document.getElementById("container")
  const menuCat=document.getElementById("category") 
  let categories=[]
+ let filter=[]
 
  // defines every categories that exists and remove dubble
  const listOfCategories=()=>{
@@ -192,7 +193,7 @@ const SelectCategory = (event) => {
   else {
     cat=event.target.className
   }
-
+filter.push(cat)
 container.replaceChildren()
 categories=[]
 
@@ -202,7 +203,7 @@ if (food[i].category.includes(cat)){
 
   createCard(i)
   for (let j=0; j<food[i].category.length;j++){
-  if (categories.includes(food[i].category[j])){
+  if (filter.includes(food[i].category)||food[i].category[j]==cat){
   }
   else {
   categories.push(food[i].category[j])
@@ -213,8 +214,10 @@ else {
   continue
 }
 }
+
 menuCat.replaceChildren()
 createMenuCat()
+
 }
 
 
