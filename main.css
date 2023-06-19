@@ -2,3 +2,9 @@ body{
 	margin:0;
 	box-sizing: border-box;
 }
+.name{
+	background-color: red
+}
+.surname{
+	background-color: blue;
+}
