@@ -44,29 +44,3 @@ for (let i = 0; i < food.length; i++) {
   // appending the card to the body
   document.body.appendChild(card);
 }
-
-/* // creating the cards
-for (let i = 0; i < food.length; i++) {
-  // card
-  let card = document.createElement(`div`);
-  // adding the picture
-  let picture = document.createElement(`img`);
-  picture.src = food[i].picture;
-  card[i].children[0].appendChild(picture);
-  // adding the name
-  let name = document.createTextNode(food[i].name);
-  card[i].children[1].appendChild(name);
-  // adding the category
-  let category = document.createTextNode(food[i].category);
-  card[i].children[2].appendChild(category);
-  // adding the description
-  let description = document.createTextNode(food[i].description);
-  card[i].children[3].appendChild(description);
-  // adding the price
-  let price = document.createTextNode(food[i].price);
-  card[i].children[4].appendChild(price);
-  // set ID
-  card[i].setAttribute("id", food[i].name);
-  // set class
-  card[i].className = food[i].category;
-} */
