@@ -86,3 +86,6 @@ body {
     justify-content: space-evenly;
   }
 }
+#category >div >div{
+  background-color: red;
+}
