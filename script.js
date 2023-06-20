@@ -322,6 +322,17 @@ const createCard = (i) => {
   addbutton.textContent = `add`;
   addbutton.value = food[i].name;
 
+// adding input for quantity
+  let addInput = document.createElement(`input`);
+  addInput.id = `input ${food[i].name}`;
+  addInput.type="number"
+  addInput.value="1"
+  let selectedQuantity="1"
+  addInput.addEventListener('keyup',(event)=>{
+    selectedQuantity=event.target.value
+  })
+  card.appendChild(addInput);
+
   // click on the card
   addbutton.addEventListener(`click`, (event) => {
     console.log(event.target.value);
@@ -331,15 +342,16 @@ const createCard = (i) => {
 
       console.log(quantity.textContent);
       let a = quantity.textContent;
-      a++;
-      quantity.textContent = a;
+      
+      quantity.textContent = parseInt(a) + parseInt(selectedQuantity);
     } else {
       // push in the cart array
       cart.push(food[i]);
       let list = document.createElement(`li`);
       let listprice = document.createElement(`p`); // appending it to the minusplus div below
       let listquantity = document.createElement(`p`);
-      listquantity.textContent = `1`;
+      console.log(selectedQuantity)
+      listquantity.textContent = selectedQuantity;
       listquantity.id = `q ${food[i].name}`;
       let listname = document.createElement(`p`);
       listname.innerText = food[i].name;
@@ -366,7 +378,7 @@ const createCard = (i) => {
     }
     array.push(event.target.value);
     // increment the total price of the cart
-    totalfloat += food[i].price;
+    totalfloat += food[i].price*selectedQuantity;
     totalstring.innerText = totalfloat.toFixed(2) + `€`;
     click++;
     console.log(array);
