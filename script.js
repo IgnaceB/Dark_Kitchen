@@ -217,6 +217,16 @@ const SelectCategory = (event) => {
   } else {
     cat = event.target.className;
   }
+  menuCat.style.paddingLeft="70px"
+  menuCat.style.marginRight="70px"
+  document.querySelector(`.${cat}`).style.position="absolute"
+  document.querySelector(`.${cat}`).style.zIndex="3"
+   document.querySelector(`.${cat}`).style.marginLeft="-65px"
+   document.querySelector(`.${cat}`).style.width="65px"
+   document.querySelector(`.${cat}`).style.border="white solid 1px"
+      document.querySelector(`.${cat}`).style.borderTop="none"
+
+
 
   //clean the card container
   container.replaceChildren();
@@ -255,6 +265,7 @@ const SelectCategory = (event) => {
     // creating special event listener that display the combine value of both
     createDiv.addEventListener("click", (event) => {
       container.replaceChildren();
+
       for (let i = 0; i < food.length; i++) {
         if (
           food[i].category.includes(cat) &&
