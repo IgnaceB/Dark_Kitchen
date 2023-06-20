@@ -457,4 +457,14 @@ const createButtonCart = () => {
 };
 createButtonCart();
 // Append the container of total to the nav
-document.querySelector(`nav`).appendChild(totalcontainer);
+document.querySelector(`nav`).insertBefore(totalcontainer, menuCat);
+
+// add event listener for opening cart menu
+document.getElementById("shopping-cart").addEventListener("click",(event)=>{
+  if (document.getElementById("total").style.display=="block"){
+    document.getElementById("total").style.display="none"
+  }
+  else{
+    console.log(document.getElementById("total").style.display)
+  document.getElementById("total").style.display="block"
+}})
