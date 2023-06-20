@@ -1,7 +1,7 @@
 // food list
 // source : https://www.nytimes.com/2022/12/14/dining/most-popular-recipes.html
 const food = [
-//1
+  //1
   {
     name: `San Francisco-Style Vietnamese American Garlic Noodles`,
     category: [`pasta`],
@@ -161,32 +161,27 @@ const food = [
     description: `Fried rice recipe where cubes of tofu are cooked in a combination of soy sauce, garlic, ginger and sugar, absorbing the flavors like tender little sponges.`,
     picture: `https://static01.nyt.com/images/2022/01/11/dining/14TOPRECIPES-ROUNDUP-tofu-and-broccoli-fried-rice-copy/kc-tofu-and-broccoli-fried-rice-superJumbo-v2.jpg?quality=75&auto=webp`,
   },
-
 ]
-
 
 // CONST
 let click = 0
-const main=document.querySelector("main")
-const container=document.getElementById("container")
-const menuCat=document.getElementById("category") 
-const searchbar=document.querySelector("input")
-let categories=[]
-let filter=[]
+const main = document.querySelector("main")
+const container = document.getElementById("container")
+const menuCat = document.getElementById("category")
+const searchbar = document.querySelector("input")
+let categories = []
+let filter = []
 const cart = []
 
- // defines every categories that exists and remove dubble
-const listOfCategories=()=>{
-  food.forEach((element) => { 
-    for (let i=0; i<element.category.length;i++)
-      if (categories.includes(element.category[i])){
-      }
-      else {
+// defines every categories that exists and remove dubble
+const listOfCategories = () => {
+  food.forEach((element) => {
+    for (let i = 0; i < element.category.length; i++)
+      if (categories.includes(element.category[i])) {
+      } else {
         categories.push(element.category[i])
       }
-    }
-    )
-
+  })
 }
 
 //defining function Menu of categories
@@ -205,87 +200,79 @@ listOfCategories()
 
 // function that sort cards by category on click on DIV
 const SelectCategory = (event) => {
+  let cat = ""
 
-    let cat=''
+  // delete + reset menu
+  menuCat.replaceChildren()
+  listOfCategories()
 
-    // delete + reset menu
-    menuCat.replaceChildren()
-    listOfCategories()
+  for (let i = 0; i < categories.length; i++) {
+    createMenuCat(i, menuCat)
+  }
 
-      for (let i=0; i<categories.length;i++){
-
-      createMenuCat(i,menuCat)
-   }
-
-    //check if you click on p or div
-    if (event.target.innerText!=""){
-      cat = event.target.innerText
-    }
-    else {
-      cat=event.target.className
-    }
+  //check if you click on p or div
+  if (event.target.innerText != "") {
+    cat = event.target.innerText
+  } else {
+    cat = event.target.className
+  }
 
   //clean the card container
   container.replaceChildren()
-  categories=[]
+  categories = []
 
   // create cards
   for (let i = 0; i < food.length; i++) {
+    if (food[i].category.includes(cat)) {
+      createCard(i)
 
-  if (food[i].category.includes(cat)){
-
-  createCard(i)
-
-  // create array of the categories that are contained in each object that are called
-  for (let j=0; j<food[i].category.length;j++){
-
-    // verification if the value is already inside the array and avoiding to call the value you clicked on
-    if (categories.includes(food[i].category[j])||food[i].category[j]==cat){
-    }
-    else {
-    categories.push(food[i].category[j])
-    }
-    }
-    }
-    else {
+      // create array of the categories that are contained in each object that are called
+      for (let j = 0; j < food[i].category.length; j++) {
+        // verification if the value is already inside the array and avoiding to call the value you clicked on
+        if (
+          categories.includes(food[i].category[j]) ||
+          food[i].category[j] == cat
+        ) {
+        } else {
+          categories.push(food[i].category[j])
+        }
+      }
+    } else {
       continue
     }
   }
 
-  // looping on the array just updated, and create a div and a p for each value inside the element you clicked 
-  categories.forEach((element,index)=>{
-    let position=document.querySelector('.' + cat)
-      let createP=document.createElement("p")
-  let createDiv=document.createElement("div")
-  createDiv.className=categories[index]
-  createP.innerText=categories[index]
-  createDiv.appendChild(createP)
+  // looping on the array just updated, and create a div and a p for each value inside the element you clicked
+  categories.forEach((element, index) => {
+    let position = document.querySelector("." + cat)
+    let createP = document.createElement("p")
+    let createDiv = document.createElement("div")
+    createDiv.className = categories[index]
+    createP.innerText = categories[index]
+    createDiv.appendChild(createP)
 
-  // creating special event listener that display the combine value of both
-  createDiv.addEventListener('click',(event)=> {
+    // creating special event listener that display the combine value of both
+    createDiv.addEventListener("click", (event) => {
       container.replaceChildren()
       for (let i = 0; i < food.length; i++) {
-
-  if (food[i].category.includes(cat) && food[i].category.includes(event.target.innerText)){
-
-      createCard(i)
-
-    }
-  else {
-
-    continue
-  }
-  }
-})
-  // positioning the subCat
-  position.appendChild(createDiv)
-})
+        if (
+          food[i].category.includes(cat) &&
+          food[i].category.includes(event.target.innerText)
+        ) {
+          createCard(i)
+        } else {
+          continue
+        }
+      }
+    })
+    // positioning the subCat
+    position.appendChild(createDiv)
+  })
 }
 /*init menu of categories*/
 
-for (let i=0; i<categories.length;i++){
-  createMenuCat(i,menuCat)
-
+for (let i = 0; i < categories.length; i++) {
+  createMenuCat(i, menuCat)
 }
 
 // Defining function to create cards
@@ -303,7 +290,7 @@ const createCard = (i) => {
     listprice.innerText = cart[click].price.toFixed(2) + `€`
     listspace.appendChild(listname)
     listspace.appendChild(listprice)
-    container.insertBefore(listspace, totalstring)
+    totalcontainer.insertBefore(listspace, totalstring)
     // increment the total price of the cart
     totalfloat += cart[click].price
     totalstring.innerText = totalfloat.toFixed(2) + `€`
@@ -358,37 +345,60 @@ for (let i = 0; i < food.length; i++) {
   createCard(i)
 }
 
-
 // add eventlistener on searchbar
 
-searchbar.addEventListener("keyup",(event)=>{
+searchbar.addEventListener("keyup", (event) => {
   container.replaceChildren()
-  for (let i = 0; i < food.length; i++){
+  for (let i = 0; i < food.length; i++) {
     console.log(event.target.value)
     console.log(Object.values(food[i]))
-    let research=Object.values(food[i]).toString()
+    let research = Object.values(food[i]).toString()
     console.log(research)
-    if (research.includes(event.target.value)){
+    if (research.includes(event.target.value)) {
       console.log("CA RENTRE")
       createCard(i)
-    }
-    else {
+    } else {
       continue
     }
   }
 })
 
 // Creating the total of the cart
+let totalcontainer = document.createElement(`div`)
+totalcontainer.id = `total`
 let totalstring = document.createElement(`p`)
 let totalfloat = 0
 totalstring.innerText = totalfloat.toFixed(2) + `€`
-container.appendChild(totalstring)
+totalcontainer.appendChild(totalstring)
+
+// Form
+const createFormCart = () => {
+  let form = document.createElement(`form`)
+  // name input
+  let nameInput = document.createElement(`input`)
+  nameInput.type = "text"
+  nameInput.className = "nameClass"
+  nameInput.placeholder = `Name`
+  nameInput.required = true
+  form.appendChild(nameInput)
+  // adress input
+  let adressInput = document.createElement(`input`)
+  adressInput.type = "text"
+  adressInput.className = "adressClass"
+  adressInput.placeholder = `Adress`
+  adressInput.required = true
+  form.appendChild(adressInput)
+  // appending to the container
+  totalcontainer.appendChild(form)
+}
+createFormCart()
 
 // Creating the buy button of the cart
 const createButtonCart = () => {
   let buybutton = document.createElement(`button`)
   buybutton.className = `cartbutton`
-  container.appendChild(buybutton)
+  totalcontainer.appendChild(buybutton)
 }
 createButtonCart()
-
+// Append the container of total to the nav
+document.querySelector(`nav`).appendChild(totalcontainer)
