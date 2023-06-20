@@ -161,17 +161,17 @@ const food = [
     description: `Fried rice recipe where cubes of tofu are cooked in a combination of soy sauce, garlic, ginger and sugar, absorbing the flavors like tender little sponges.`,
     picture: `https://static01.nyt.com/images/2022/01/11/dining/14TOPRECIPES-ROUNDUP-tofu-and-broccoli-fried-rice-copy/kc-tofu-and-broccoli-fried-rice-superJumbo-v2.jpg?quality=75&auto=webp`,
   },
-];
+]
 
 // CONST
-let click = 0;
-const main = document.querySelector("main");
-const container = document.getElementById("container");
-const menuCat = document.getElementById("category");
-const searchbar = document.querySelector("input");
-let categories = [];
-let filter = [];
-const cart = [];
+let click = 0
+const main = document.querySelector("main")
+const container = document.getElementById("container")
+const menuCat = document.getElementById("category")
+const searchbar = document.querySelector("input")
+let categories = []
+let filter = []
+const cart = []
 
 // defines every categories that exists and remove dubble
 const listOfCategories = () => {
@@ -179,52 +179,52 @@ const listOfCategories = () => {
     for (let i = 0; i < element.category.length; i++)
       if (categories.includes(element.category[i])) {
       } else {
-        categories.push(element.category[i]);
+        categories.push(element.category[i])
       }
-  });
-};
+  })
+}
 
 //defining function Menu of categories
 const createMenuCat = (i, menu) => {
-  let createP = document.createElement("p");
-  let createDiv = document.createElement("div");
-  createDiv.className = categories[i];
-  createP.innerText = categories[i];
-  createDiv.appendChild(createP);
-  createP.addEventListener("click", SelectCategory);
-  menu.appendChild(createDiv);
-};
+  let createP = document.createElement("p")
+  let createDiv = document.createElement("div")
+  createDiv.className = categories[i]
+  createP.innerText = categories[i]
+  createDiv.appendChild(createP)
+  createP.addEventListener("click", SelectCategory)
+  menu.appendChild(createDiv)
+}
 
 // init the categories
-listOfCategories();
+listOfCategories()
 
 // function that sort cards by category on click on DIV
 const SelectCategory = (event) => {
-  let cat = "";
+  let cat = ""
 
   // delete + reset menu
-  menuCat.replaceChildren();
-  listOfCategories();
+  menuCat.replaceChildren()
+  listOfCategories()
 
   for (let i = 0; i < categories.length; i++) {
-    createMenuCat(i, menuCat);
+    createMenuCat(i, menuCat)
   }
 
   //check if you click on p or div
   if (event.target.innerText != "") {
-    cat = event.target.innerText;
+    cat = event.target.innerText
   } else {
-    cat = event.target.className;
+    cat = event.target.className
   }
 
   //clean the card container
-  container.replaceChildren();
-  categories = [];
+  container.replaceChildren()
+  categories = []
 
   // create cards
   for (let i = 0; i < food.length; i++) {
     if (food[i].category.includes(cat)) {
-      createCard(i);
+      createCard(i)
 
       // create array of the categories that are contained in each object that are called
       for (let j = 0; j < food[i].category.length; j++) {
@@ -234,145 +234,171 @@ const SelectCategory = (event) => {
           food[i].category[j] == cat
         ) {
         } else {
-          categories.push(food[i].category[j]);
+          categories.push(food[i].category[j])
         }
       }
     } else {
-      continue;
+      continue
     }
   }
 
   // looping on the array just updated, and create a div and a p for each value inside the element you clicked
   categories.forEach((element, index) => {
-    let position = document.querySelector("." + cat);
-    let createP = document.createElement("p");
-    let createDiv = document.createElement("div");
-    createDiv.className = categories[index];
-    createP.innerText = categories[index];
-    createDiv.appendChild(createP);
+    let position = document.querySelector("." + cat)
+    let createP = document.createElement("p")
+    let createDiv = document.createElement("div")
+    createDiv.className = categories[index]
+    createP.innerText = categories[index]
+    createDiv.appendChild(createP)
 
     // creating special event listener that display the combine value of both
     createDiv.addEventListener("click", (event) => {
-      container.replaceChildren();
+      container.replaceChildren()
       for (let i = 0; i < food.length; i++) {
         if (
           food[i].category.includes(cat) &&
           food[i].category.includes(event.target.innerText)
         ) {
-          createCard(i);
+          createCard(i)
         } else {
-          continue;
+          continue
         }
       }
-    });
+    })
     // positioning the subCat
-    position.appendChild(createDiv);
-  });
-};
+    position.appendChild(createDiv)
+  })
+}
 /*init menu of categories*/
 
 for (let i = 0; i < categories.length; i++) {
-  createMenuCat(i, menuCat);
+  createMenuCat(i, menuCat)
 }
 
 // Defining function to create cards
 const createCard = (i) => {
   // initializing the card
-  let card = document.createElement(`div`);
+  let card = document.createElement(`div`)
   // click on the card
   card.addEventListener(`click`, () => {
     // push in the cart array
-    cart.push(food[i]);
-    let listname = document.createElement(`li`);
-    let listprice = document.createElement(`li`);
-    let listspace = document.createElement(`ul`);
-    listname.innerText = cart[click].name;
-    listprice.innerText = cart[click].price.toFixed(2) + `€`;
-    listspace.appendChild(listname);
-    listspace.appendChild(listprice);
-    container.insertBefore(listspace, totalstring);
+    cart.push(food[i])
+    let listname = document.createElement(`li`)
+    let listprice = document.createElement(`li`)
+    let listspace = document.createElement(`ul`)
+    listname.innerText = cart[click].name
+    listprice.innerText = cart[click].price.toFixed(2) + `€`
+    listspace.appendChild(listname)
+    listspace.appendChild(listprice)
+    totalcontainer.insertBefore(listspace, totalstring)
     // increment the total price of the cart
-    totalfloat += cart[click].price;
-    totalstring.innerText = totalfloat.toFixed(2) + `€`;
-    click++;
-  });
+    totalfloat += cart[click].price
+    totalstring.innerText = totalfloat.toFixed(2) + `€`
+    click++
+  })
 
   // adding the picture
-  let picture = document.createElement(`img`);
-  picture.src = food[i].picture;
-  card.appendChild(picture);
+  let picture = document.createElement(`img`)
+  picture.src = food[i].picture
+  card.appendChild(picture)
 
   // adding the name
-  let paragraph1 = document.createElement(`p`);
-  let name = document.createTextNode(food[i].name);
-  paragraph1.className = "name";
-  card.appendChild(paragraph1);
-  paragraph1.appendChild(name);
+  let paragraph1 = document.createElement(`p`)
+  let name = document.createTextNode(food[i].name)
+  paragraph1.className = "name"
+  card.appendChild(paragraph1)
+  paragraph1.appendChild(name)
 
   // adding the category
-  let paragraph2 = document.createElement(`p`);
-  let category = document.createTextNode(food[i].category);
-  paragraph2.className = "category";
-  card.appendChild(paragraph2);
-  paragraph2.appendChild(category);
+  let paragraph2 = document.createElement(`p`)
+  let category = document.createTextNode(food[i].category)
+  paragraph2.className = "category"
+  card.appendChild(paragraph2)
+  paragraph2.appendChild(category)
 
   // adding the description
-  let paragraph3 = document.createElement(`p`);
-  let description = document.createTextNode(food[i].description);
-  paragraph3.className = "description";
-  card.appendChild(paragraph3);
-  paragraph3.appendChild(description);
+  let paragraph3 = document.createElement(`p`)
+  let description = document.createTextNode(food[i].description)
+  paragraph3.className = "description"
+  card.appendChild(paragraph3)
+  paragraph3.appendChild(description)
 
   // adding the price
-  let paragraph4 = document.createElement(`p`);
-  let price = document.createTextNode(food[i].price.toFixed(2) + `€`);
-  paragraph4.className = "price";
-  card.appendChild(paragraph4);
-  paragraph4.appendChild(price);
+  let paragraph4 = document.createElement(`p`)
+  let price = document.createTextNode(food[i].price.toFixed(2) + `€`)
+  paragraph4.className = "price"
+  card.appendChild(paragraph4)
+  paragraph4.appendChild(price)
 
   // set ID
-  card.setAttribute("id", food[i].name);
+  card.setAttribute("id", food[i].name)
   // set class
   for (j = 0; j < food[i].category.length; j++) {
-    card.classList.add(food[i].category[j]);
+    card.classList.add(food[i].category[j])
   }
   // appending the card to the body
-  container.appendChild(card);
-};
+  container.appendChild(card)
+}
 // Initialization creating the cards for each food object
 
 for (let i = 0; i < food.length; i++) {
-  createCard(i);
+  createCard(i)
 }
 
 // add eventlistener on searchbar
 
 searchbar.addEventListener("keyup", (event) => {
-  container.replaceChildren();
+  container.replaceChildren()
   for (let i = 0; i < food.length; i++) {
-    console.log(event.target.value);
-    console.log(Object.values(food[i]));
-    let research = Object.values(food[i]).toString();
-    console.log(research);
+    console.log(event.target.value)
+    console.log(Object.values(food[i]))
+    let research = Object.values(food[i]).toString()
+    console.log(research)
     if (research.includes(event.target.value)) {
-      console.log("CA RENTRE");
-      createCard(i);
+      console.log("CA RENTRE")
+      createCard(i)
     } else {
-      continue;
+      continue
     }
   }
-});
+})
 
 // Creating the total of the cart
-let totalstring = document.createElement(`p`);
-let totalfloat = 0;
-totalstring.innerText = totalfloat.toFixed(2) + `€`;
-container.appendChild(totalstring);
+let totalcontainer = document.createElement(`div`)
+totalcontainer.id = `total`
+let totalstring = document.createElement(`p`)
+let totalfloat = 0
+totalstring.innerText = totalfloat.toFixed(2) + `€`
+totalcontainer.appendChild(totalstring)
+
+// Form
+const createFormCart = () => {
+  let form = document.createElement(`form`)
+  // name input
+  let nameInput = document.createElement(`input`)
+  nameInput.type = "text"
+  nameInput.className = "nameClass"
+  nameInput.placeholder = `Name`
+  nameInput.required = true
+  form.appendChild(nameInput)
+  // adress input
+  let adressInput = document.createElement(`input`)
+  adressInput.type = "text"
+  adressInput.className = "adressClass"
+  adressInput.placeholder = `Adress`
+  adressInput.required = true
+  form.appendChild(adressInput)
+  // appending to the container
+  totalcontainer.appendChild(form)
+}
+createFormCart()
 
 // Creating the buy button of the cart
 const createButtonCart = () => {
-  let buybutton = document.createElement(`button`);
-  buybutton.className = `cartbutton`;
-  container.appendChild(buybutton);
-};
-createButtonCart();
+  let buybutton = document.createElement(`button`)
+  buybutton.className = `cartbutton`
+  totalcontainer.appendChild(buybutton)
+}
+createButtonCart()
+// Append the container of total to the nav
+document.querySelector(`nav`).appendChild(totalcontainer)
