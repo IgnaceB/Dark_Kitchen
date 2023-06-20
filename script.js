@@ -290,7 +290,7 @@ const createCard = (i) => {
     listprice.innerText = cart[click].price.toFixed(2) + `€`;
     listspace.appendChild(listname);
     listspace.appendChild(listprice);
-    container.insertBefore(listspace, totalstring);
+    totalcontainer.insertBefore(listspace, totalstring);
     // increment the total price of the cart
     totalfloat += cart[click].price;
     totalstring.innerText = totalfloat.toFixed(2) + `€`;
@@ -301,6 +301,10 @@ const createCard = (i) => {
   let picture = document.createElement(`img`);
   picture.src = food[i].picture;
   card.appendChild(picture);
+
+  let cardText = document.createElement(`div`);
+  cardText.className = "cardText";
+  card.appendChild(cardText);
 
   let cardText = document.createElement(`div`);
   cardText.className = "cardText";
@@ -368,15 +372,41 @@ searchbar.addEventListener("keyup", (event) => {
 });
 
 // Creating the total of the cart
+let totalcontainer = document.createElement(`div`);
+totalcontainer.id = `total`;
 let totalstring = document.createElement(`p`);
 let totalfloat = 0;
 totalstring.innerText = totalfloat.toFixed(2) + `€`;
-container.appendChild(totalstring);
+totalcontainer.appendChild(totalstring);
+
+// Form
+const createFormCart = () => {
+  let form = document.createElement(`form`);
+  // name input
+  let nameInput = document.createElement(`input`);
+  nameInput.type = "text";
+  nameInput.className = "nameClass";
+  nameInput.placeholder = `Name`;
+  nameInput.required = true;
+  form.appendChild(nameInput);
+  // adress input
+  let adressInput = document.createElement(`input`);
+  adressInput.type = "text";
+  adressInput.className = "adressClass";
+  adressInput.placeholder = `Adress`;
+  adressInput.required = true;
+  form.appendChild(adressInput);
+  // appending to the container
+  totalcontainer.appendChild(form);
+};
+createFormCart();
 
 // Creating the buy button of the cart
 const createButtonCart = () => {
   let buybutton = document.createElement(`button`);
   buybutton.className = `cartbutton`;
-  container.appendChild(buybutton);
+  totalcontainer.appendChild(buybutton);
 };
 createButtonCart();
+// Append the container of total to the nav
+document.querySelector(`nav`).appendChild(totalcontainer);
