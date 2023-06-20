@@ -306,10 +306,6 @@ const createCard = (i) => {
   cardText.className = "cardText";
   card.appendChild(cardText);
 
-  let cardText = document.createElement(`div`);
-  cardText.className = "cardText";
-  card.appendChild(cardText);
-
   // adding the name
   let paragraph1 = document.createElement(`p`);
   let name = document.createTextNode(food[i].name);
