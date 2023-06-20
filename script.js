@@ -302,32 +302,36 @@ const createCard = (i) => {
   picture.src = food[i].picture;
   card.appendChild(picture);
 
+  let cardText = document.createElement(`div`);
+  cardText.className = "cardText";
+  card.appendChild(cardText);
+
   // adding the name
   let paragraph1 = document.createElement(`p`);
   let name = document.createTextNode(food[i].name);
   paragraph1.className = "name";
-  card.appendChild(paragraph1);
+  cardText.appendChild(paragraph1);
   paragraph1.appendChild(name);
 
   // adding the category
   let paragraph2 = document.createElement(`p`);
   let category = document.createTextNode(food[i].category);
   paragraph2.className = "category";
-  card.appendChild(paragraph2);
+  cardText.appendChild(paragraph2);
   paragraph2.appendChild(category);
 
   // adding the description
   let paragraph3 = document.createElement(`p`);
   let description = document.createTextNode(food[i].description);
   paragraph3.className = "description";
-  card.appendChild(paragraph3);
+  cardText.appendChild(paragraph3);
   paragraph3.appendChild(description);
 
   // adding the price
   let paragraph4 = document.createElement(`p`);
   let price = document.createTextNode(food[i].price.toFixed(2) + `€`);
   paragraph4.className = "price";
-  card.appendChild(paragraph4);
+  cardText.appendChild(paragraph4);
   paragraph4.appendChild(price);
 
   // set ID
