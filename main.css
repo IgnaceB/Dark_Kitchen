@@ -29,14 +29,7 @@ body {
   }
 
   /* to change later */
-  #category > div {
-    background-color: lawngreen;
-    color: aliceblue;
-    border-radius: 10px;
-    margin: 5px;
-    font-size: 0.8rem;
-    font-weight: bold;
-  }
+ 
 
   #main {
     display: flex;
@@ -128,6 +121,58 @@ body {
     font-size: 30px;
   }
 }
+/* WORK IGNACE*/
+nav>#total{
+  width:45%;
+  position:absolute;
+  right: 10px;
+  display:none;
+  background-color:white;
+  border: 1px solid ;
+  z-index:2;
+  margin-top: -10px;
+padding: 10px;
+}
+
+nav {
+  width:90%;
+  margin:5%;
+  display:flex;
+  flex-wrap: wrap;
+  align-items: : center;
+ justify-content: space-between
+}
+nav>input{
+  width:45%;
+  height:25px;
+  
+}
+#shopping-cart{
+  width: 25px;
+cursor: pointer;
+z-index: 3;
+}
+#shopping-cart>svg:hover{
+  background-color: grey;
+  color:white;
+  border-radius: 5px;
+}
+#category{
+  display: flex;
+flex-direction: row;
+overflow: scroll;
+}
+
+ #category > div {
+    background-color: lawngreen;
+    color: aliceblue;
+    border-radius: 10px;
+    margin: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    min-width:50px;
+    text-align: center;
+  }
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
   h1 {
