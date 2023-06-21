@@ -490,10 +490,18 @@ const createFormCart = () => {
 createFormCart();
 
 // Creating the buy button of the cart
+const openInNewTab = (url) => {
+  window.open(url, "_blank");
+};
 const createButtonCart = () => {
   let buybutton = document.createElement(`button`);
   buybutton.className = `cartbutton`;
   buybutton.textContent = `Pay`;
+  buybutton.addEventListener(`click`, () => {
+    openInNewTab(
+      "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjR0MmeytT_AhU__7sIHVaRD1IQ3yx6BAgeEAI&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&usg=AOvVaw0aHtehaphMhOCAkCydRLZU&opi=89978449"
+    );
+  });
   totalcontainer.appendChild(buybutton);
 };
 createButtonCart();

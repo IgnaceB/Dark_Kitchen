@@ -11,10 +11,11 @@
 
 
 *{  
-  color: inherit;
+  
   color: var(--font-color);
-  background-color: inherit;
+  
   background-color: var(--main-color);
+  
 }
 
 body {
@@ -532,4 +533,14 @@ input:checked + .slider:before {
 
 .slider.round:before {
   border-radius: 50%;
+}
+#category > * > *{
+  background-color: var(--main-color);
+}
+nav > input {
+  width: 45%;
+  height: 25px;
+  border: solid;
+
+  border-radius: 15px;
 }
