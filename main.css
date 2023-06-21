@@ -1,10 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap");
 
 :root {
-  --main-color: #e5ffde;
-  --second-color: #82816d;
-  --third-color: #ff934f;
-  --fourth-color: #2b4162;
+    --main-color:#e5ffde;
+    --second-color:#82816d;
+    --third-color:#ff934f;
+    --fourth-color:#2b4162;
+    --font-color:black;
+}
+*{
+  color: inherit;
+  color: var(--font-color);
+  background-color: inherit;
 }
 
 body {
@@ -168,9 +174,9 @@ nav > input {
   border-radius: 5px;
 }
 
-#shopping-cart > svg:hover {
-  background-color: #f0fbf0;
-  color: black;
+#shopping-cart>svg:hover{
+  background-color: var(--#82816d);
+  color:black;
   border-radius: 5px;
 }
 #category {
@@ -382,12 +388,7 @@ nav > input {
 }
 
 /* WORK NOAH */
-:root {
-  --main-color: #e5ffde;
-  --second-color: #82816d;
-  --third-color: #ff934f;
-  --fourth-color: #2b4162;
-}
+
 @media only screen and (max-width: 600px) {
   #total {
     font-family: calibri;
@@ -469,3 +470,76 @@ nav > input {
     border: none;
   }
 }
+
+}
+[data-theme="dark"] {
+  --main-color:#82816d;
+  --second-color:#e5ffde;
+  --third-color:#2b4162;
+  --fourth-color:#ff934f;
+  --font-color: white;
+}
+
+header{
+  display: flex;
+  justify-content: space-between;
+}
+.theme-switch-wrapper {
+  display: flex;
+  align-items: center;
+
+  
+}
+.theme-switch-wrapper > em {
+  margin-left: 10px;
+  font-size: 1rem;
+}
+.theme-switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.theme-switch input {
+  display:none;
+}
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider {
+  background-color: #66bb6a;
+}
+
+input:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
