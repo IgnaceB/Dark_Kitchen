@@ -135,7 +135,7 @@ const food = [
     category: [`vegan`, `rice`],
     price: 11.19,
     description: `meal of seared scallops and brussels sprouts glazed in a Dijon-, lime- and maple-based sauce served with risotto`,
-    picture: ``,
+    picture: `https://static01.nyt.com/images/2022/02/13/dining/14TOPRECIPES-ROUNDUP-SCALLOPS/13EAT-seared-scallops-brussels-sprouts1-superJumbo.jpg?quality=75&auto=webp`,
   },
   // 18
   {
@@ -172,6 +172,7 @@ const searchbar = document.querySelector("input");
 let categories = [];
 let filter = [];
 let cart = [];
+let multiplefood = [];
 const listspace = document.createElement(`ul`);
 
 // defines every categories that exists and remove dubble
@@ -217,16 +218,6 @@ const SelectCategory = (event) => {
   } else {
     cat = event.target.className;
   }
-  menuCat.style.paddingLeft="70px"
-  menuCat.style.marginRight="70px"
-  document.querySelector(`.${cat}`).style.position="absolute"
-  document.querySelector(`.${cat}`).style.zIndex="3"
-   document.querySelector(`.${cat}`).style.marginLeft="-65px"
-   document.querySelector(`.${cat}`).style.width="65px"
-   document.querySelector(`.${cat}`).style.border="white solid 1px"
-      document.querySelector(`.${cat}`).style.borderTop="none"
-
-
 
   //clean the card container
   container.replaceChildren();
@@ -265,7 +256,6 @@ const SelectCategory = (event) => {
     // creating special event listener that display the combine value of both
     createDiv.addEventListener("click", (event) => {
       container.replaceChildren();
-
       for (let i = 0; i < food.length; i++) {
         if (
           food[i].category.includes(cat) &&
@@ -288,7 +278,7 @@ for (let i = 0; i < categories.length; i++) {
 }
 
 // Defining function to create cards
-let array = [];
+
 const createCard = (i) => {
   // initializing the card
 
@@ -333,27 +323,23 @@ const createCard = (i) => {
   addbutton.textContent = `add`;
   addbutton.value = food[i].name;
 
-// adding input for quantity
+  // adding input for quantity
   let addInput = document.createElement(`input`);
   addInput.id = `input ${food[i].name}`;
-  addInput.type="number"
-  addInput.value="1"
-  let selectedQuantity="1"
-  addInput.addEventListener('keyup',(event)=>{
-    selectedQuantity=event.target.value
-  })
+  addInput.type = "number";
+  addInput.value = "1";
+  let selectedQuantity = "1";
+  addInput.addEventListener("keyup", (event) => {
+    selectedQuantity = event.target.value;
+  });
   card.appendChild(addInput);
 
-  // click on the card
+  // click on the button
   addbutton.addEventListener(`click`, (event) => {
-    console.log(event.target.value);
-
-    if (array.includes(event.target.value)) {
+    if (multiplefood.includes(event.target.value)) {
       let quantity = document.getElementById(`q ${event.target.value}`);
 
-      console.log(quantity.textContent);
       let a = quantity.textContent;
-      
       quantity.textContent = parseInt(a) + parseInt(selectedQuantity);
     } else {
       // push in the cart array
@@ -361,7 +347,6 @@ const createCard = (i) => {
       let list = document.createElement(`li`);
       let listprice = document.createElement(`p`); // appending it to the minusplus div below
       let listquantity = document.createElement(`p`);
-      console.log(selectedQuantity)
       listquantity.textContent = selectedQuantity;
       listquantity.id = `q ${food[i].name}`;
       let listname = document.createElement(`p`);
@@ -382,17 +367,51 @@ const createCard = (i) => {
       let plusbutton = document.createElement(`p`);
       plusbutton.className = `buttonaddremove`;
       plusbutton.innerText = `+`;
+      // remove 1 or add 1
+      minusbutton.addEventListener(`click`, () => {
+        if (listquantity.textContent != 0) {
+          listquantity.textContent = parseInt(listquantity.textContent) - 1;
+          totalfloat -= food[i].price.toFixed(2);
+          totalfloat.toFixed(2);
+          totalstring.innerText = totalfloat.toFixed(2) + `€`;
+          if (listquantity.textContent == 0) {
+            cart.splice(i, 1);
+            list.remove();
+            for (let y = 0; y < multiplefood.length; y++) {
+              if (multiplefood[y] == food[i].name) {
+                multiplefood.splice(y, 1);
+                if (multiplefood.includes(food[i].name)) {
+                  multiplefood.splice(y, 1);
+                }
+              }
+            }
+          }
+          /* console.log(multiplefood);
+          console.log(listquantity.textContent);
+          console.log(totalfloat.toFixed(2));
+          console.log(cart); */
+        }
+      });
+
+      plusbutton.addEventListener(`click`, (event) => {
+        listquantity.textContent = parseInt(listquantity.textContent) + 1;
+        totalfloat += food[i].price;
+
+        totalstring.innerText = totalfloat.toFixed(2) + `€`;
+
+        console.log(totalfloat.toFixed(2));
+        console.log(cart);
+      });
+
       minusplus.appendChild(listprice); // appending it to the minus plus div for flex uses
       minusplus.appendChild(minusbutton);
       minusplus.appendChild(plusbutton);
       list.appendChild(minusplus);
     }
-    array.push(event.target.value);
+    multiplefood.push(event.target.value);
     // increment the total price of the cart
-    totalfloat += food[i].price*selectedQuantity;
+    totalfloat += food[i].price * selectedQuantity;
     totalstring.innerText = totalfloat.toFixed(2) + `€`;
-    click++;
-    console.log(array);
   });
 
   card.appendChild(addbutton);
@@ -471,11 +490,11 @@ createButtonCart();
 document.querySelector(`nav`).insertBefore(totalcontainer, menuCat);
 
 // add event listener for opening cart menu
-document.getElementById("shopping-cart").addEventListener("click",(event)=>{
-  if (document.getElementById("total").style.display=="block"){
-    document.getElementById("total").style.display="none"
+document.getElementById("shopping-cart").addEventListener("click", (event) => {
+  if (document.getElementById("total").style.display == "block") {
+    document.getElementById("total").style.display = "none";
+  } else {
+    console.log(document.getElementById("total").style.display);
+    document.getElementById("total").style.display = "block";
   }
-  else{
-    console.log(document.getElementById("total").style.display)
-  document.getElementById("total").style.display="block"
-}})
+});
