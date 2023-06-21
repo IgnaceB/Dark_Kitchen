@@ -243,19 +243,25 @@ const SelectCategory = (event) => {
       continue;
     }
   }
-
+let position = document.querySelector("." + cat);
   // looping on the array just updated, and create a div and a p for each value inside the element you clicked
   categories.forEach((element, index) => {
-    let position = document.querySelector("." + cat);
+
     let createP = document.createElement("p");
     let createDiv = document.createElement("div");
     createDiv.className = categories[index];
     createP.innerText = categories[index];
     createDiv.appendChild(createP);
+    createDiv.style.setProperty("--square", '"□"')
+
 
     // creating special event listener that display the combine value of both
     createDiv.addEventListener("click", (event) => {
       container.replaceChildren();
+  
+      for (let l=0;l<position.children.length;l++){
+        position.children[l].style.setProperty("--square", '"□"')
+      }
       for (let i = 0; i < food.length; i++) {
         if (
           food[i].category.includes(cat) &&
@@ -266,10 +272,12 @@ const SelectCategory = (event) => {
           continue;
         }
       }
+      createDiv.style.setProperty("--square", '"▣"')
     });
     // positioning the subCat
     position.appendChild(createDiv);
   });
+  position.style.setProperty("--square", '"▣"')
 };
 
 
@@ -522,12 +530,10 @@ document.getElementById("trigger").querySelector("svg").style.transform="rotate(
   else{
     
   menuCat.style.visibility="visible"
-  menuCat.style.width="100vw"
+  menuCat.style.width="30%"
   menuCat.style.transform="translateY(700px)"
 
 document.getElementById("trigger").querySelector("svg").style.transform="rotate(180deg)"
 
 }})
-
-
 
