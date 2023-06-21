@@ -385,7 +385,7 @@ const createCard = (i) => {
                 multiplefood.splice(y, 1);
                 if (multiplefood.includes(food[i].name)) {
                   multiplefood.splice(y, 1);
-                  if (multiplefood.includes(food[i], name)) {
+                  if (multiplefood.includes(food[i].name)) {
                     multiplefood.splice(y, 1);
                   }
                 }
