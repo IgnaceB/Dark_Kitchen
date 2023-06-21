@@ -332,9 +332,13 @@ border: solid 1px antiquewhite;
 }
 .numName {
   display: flex;
-  justify-content: space-evenly;
+  justify-content: flex-start;
+  padding-left: 3vw;
+  margin-left:0 ;
+  
 }
 .numName :nth-child(1){
+  
   padding-right: 3vw;
 }
 .minusplus {

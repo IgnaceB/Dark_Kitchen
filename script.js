@@ -376,7 +376,7 @@ const createCard = (i) => {
           listquantity.textContent = parseInt(listquantity.textContent) - 1;
           totalfloat -= food[i].price.toFixed(2);
           totalfloat.toFixed(2);
-          totalstring.innerText = totalfloat.toFixed(2) + `€`;
+          totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
           if (listquantity.textContent == 0) {
             cart.splice(i, 1);
             list.remove();
@@ -403,10 +403,7 @@ const createCard = (i) => {
         listquantity.textContent = parseInt(listquantity.textContent) + 1;
         totalfloat += food[i].price;
 
-        totalstring.innerText = totalfloat.toFixed(2) + `€`;
-
-        console.log(totalfloat.toFixed(2));
-        console.log(cart);
+        totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
       });
 
       minusplus.appendChild(minusbutton);
@@ -417,7 +414,7 @@ const createCard = (i) => {
     multiplefood.push(event.target.value);
     // increment the total price of the cart
     totalfloat += food[i].price * selectedQuantity;
-    totalstring.innerText = totalfloat.toFixed(2) + `€`;
+    totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
   });
 
   card.appendChild(addbutton);
