@@ -339,11 +339,37 @@ border: solid 1px antiquewhite;
 }
 .minusplus {
   display: flex;
- justify-content: space-around; 
+ justify-content: flex-start; 
  flex-wrap: wrap;
+ margin-left: 4.5vw;
+}
+.minusplus > * {
+  margin-top: -1.3vh;
 }
 .minusplus :nth-child(1){
-  padding-right: 4vw;
+  margin-right: 1vw;
+  background-color: wheat;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 1.4rem;
+}
+.minusplus :nth-child(2){
+  background-color: wheat;
+  width: 25px;
+  height: 25px;
+  padding: 5px;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  font-size: 1.4rem;
 }
 .minusplus :nth-child(3){
   flex: 0 1 100%;
@@ -355,6 +381,8 @@ border: solid 1px antiquewhite;
 }
 #total > form > * {
   background-color: var(--third-color);
+  border: solid black 1px;
+  border-radius: 2px;
 }
 #total > button {
   margin-top: 7px;
