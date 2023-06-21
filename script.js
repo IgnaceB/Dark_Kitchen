@@ -135,7 +135,7 @@ const food = [
     category: [`vegan`, `rice`],
     price: 11.19,
     description: `meal of seared scallops and brussels sprouts glazed in a Dijon-, lime- and maple-based sauce served with risotto`,
-    picture: ``,
+    picture: `https://static01.nyt.com/images/2022/02/13/dining/14TOPRECIPES-ROUNDUP-SCALLOPS/13EAT-seared-scallops-brussels-sprouts1-superJumbo.jpg?quality=75&auto=webp`,
   },
   // 18
   {
@@ -171,7 +171,9 @@ const menuCat = document.getElementById("category");
 const searchbar = document.querySelector("input");
 let categories = [];
 let filter = [];
-const cart = [];
+let cart = [];
+let multiplefood = [];
+const listspace = document.createElement(`ul`);
 
 // defines every categories that exists and remove dubble
 const listOfCategories = () => {
@@ -276,6 +278,7 @@ for (let i = 0; i < categories.length; i++) {
 }
 
 // Defining function to create cards
+
 const createCard = (i) => {
   // initializing the card
   let card = document.createElement(`div`);
@@ -302,36 +305,32 @@ const createCard = (i) => {
   picture.src = food[i].picture;
   card.appendChild(picture);
 
-  let cardText = document.createElement(`div`);
-  cardText.className = "cardText";
-  card.appendChild(cardText);
-
   // adding the name
   let paragraph1 = document.createElement(`p`);
   let name = document.createTextNode(food[i].name);
   paragraph1.className = "name";
-  cardText.appendChild(paragraph1);
+  card.appendChild(paragraph1);
   paragraph1.appendChild(name);
 
   // adding the category
   let paragraph2 = document.createElement(`p`);
   let category = document.createTextNode(food[i].category);
   paragraph2.className = "category";
-  cardText.appendChild(paragraph2);
+  card.appendChild(paragraph2);
   paragraph2.appendChild(category);
 
   // adding the description
   let paragraph3 = document.createElement(`p`);
   let description = document.createTextNode(food[i].description);
   paragraph3.className = "description";
-  cardText.appendChild(paragraph3);
+  card.appendChild(paragraph3);
   paragraph3.appendChild(description);
 
   // adding the price
   let paragraph4 = document.createElement(`p`);
   let price = document.createTextNode(food[i].price.toFixed(2) + `€`);
   paragraph4.className = "price";
-  cardText.appendChild(paragraph4);
+  card.appendChild(paragraph4);
   paragraph4.appendChild(price);
 
   // set ID
