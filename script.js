@@ -352,15 +352,18 @@ const createCard = (i) => {
       let listname = document.createElement(`p`);
       listname.innerText = food[i].name;
       listprice.innerText = food[i].price.toFixed(2) + `€`;
-
-      list.appendChild(listquantity);
-      list.appendChild(listname);
+      let numName = document.createElement(`div`);
+      numName.className = `numName`;
+      numName.appendChild(listquantity);
+      numName.appendChild(listname);
+      list.appendChild(numName);
       listspace.appendChild(list);
 
       totalcontainer.insertBefore(listspace, totalstring);
 
       // - + buttons
       let minusplus = document.createElement(`div`);
+      minusplus.className = `minusplus`;
       let minusbutton = document.createElement(`p`);
       minusbutton.className = `buttonaddremove`;
       minusbutton.innerText = `-`;
@@ -406,9 +409,9 @@ const createCard = (i) => {
         console.log(cart);
       });
 
-      minusplus.appendChild(listprice); // appending it to the minus plus div for flex uses
       minusplus.appendChild(minusbutton);
       minusplus.appendChild(plusbutton);
+      minusplus.appendChild(listprice); // appending it to the minus plus div for flex uses
       list.appendChild(minusplus);
     }
     multiplefood.push(event.target.value);
@@ -486,6 +489,7 @@ createFormCart();
 const createButtonCart = () => {
   let buybutton = document.createElement(`button`);
   buybutton.className = `cartbutton`;
+  buybutton.textContent = `Pay`;
   totalcontainer.appendChild(buybutton);
 };
 createButtonCart();
@@ -494,10 +498,10 @@ document.querySelector(`nav`).insertBefore(totalcontainer, menuCat);
 
 // add event listener for opening cart menu
 document.getElementById("shopping-cart").addEventListener("click", (event) => {
-  if (document.getElementById("total").style.display == "block") {
+  if (document.getElementById("total").style.display == "flex") {
     document.getElementById("total").style.display = "none";
   } else {
     console.log(document.getElementById("total").style.display);
-    document.getElementById("total").style.display = "block";
+    document.getElementById("total").style.display = "flex";
   }
 });

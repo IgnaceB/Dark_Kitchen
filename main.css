@@ -121,13 +121,15 @@ body {
     font-size: 30px;
   }
 }
+
+
+
 /* WORK IGNACE*/
 nav>#total{
   width:45%;
   position:absolute;
   right: 10px;
   display:none;
-  background-color:white;
   border: 1px solid ;
   z-index:2;
   margin-top: -10px;
@@ -302,4 +304,66 @@ border: solid 1px antiquewhite;
     justify-content: space-evenly;
     padding: 20px;
   }
+}
+
+/* WORK NOAH */
+:root {
+  --main-color:#e5ffde;
+  --second-color:#82816d;
+  --third-color:#ff934f;
+  --fourth-color:#2b4162;
+;
+}
+@media only screen and (max-width: 600px) {
+#total{
+  font-family: calibri;
+  border-radius: 10px;
+  flex-direction: column;
+  background-color: var(--main-color);
+}
+#total > ul {
+  list-style: none;
+  
+}
+#total > ul > li {
+  display: flex;
+  flex-direction: column;
+  margin-left: -10vw;
+}
+.numName {
+  display: flex;
+  justify-content: space-evenly;
+}
+.numName :nth-child(1){
+  padding-right: 3vw;
+}
+.minusplus {
+  display: flex;
+ justify-content: space-around; 
+ flex-wrap: wrap;
+}
+.minusplus :nth-child(1){
+  padding-right: 4vw;
+}
+.minusplus :nth-child(3){
+  flex: 0 1 100%;
+  
+}
+#total > form {
+  display: flex;
+  flex-direction: column;
+}
+#total > form > * {
+  background-color: var(--third-color);
+}
+#total > button {
+  margin-top: 7px;
+  padding: 7px 25px;
+  align-self: center;
+  justify-self: center;
+  text-align: center;
+  border-radius: 25px;
+  background-color: var(--third-color);
+  border: none;
+}
 }
