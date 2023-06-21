@@ -343,7 +343,7 @@ const createCard = (i) => {
   addInput.addEventListener("keyup", (event) => {
     selectedQuantity = event.target.value;
   });
-  card.appendChild(addInput);
+  cardBuy.appendChild(addInput);
 
   // click on the button
   addbutton.addEventListener(`click`, (event) => {
@@ -428,7 +428,7 @@ const createCard = (i) => {
     totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
   });
 
-  card.appendChild(addbutton);
+  cardBuy.appendChild(addbutton);
 
   // set ID
   card.setAttribute("id", food[i].name);
