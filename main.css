@@ -287,6 +287,60 @@ nav > input {
     border-radius: 10px;
   }
 
+  .name {
+    font-family: "Raleway Dots", cursive;
+    font-size: 1.5rem;
+    padding: 0;
+    margin: 1rem;
+  }
+
+  .category {
+    font-size: 1.2rem;
+    padding: 0;
+    color: var(--third-color);
+  }
+  .cardText {
+    color: black;
+    text-align: center;
+    margin: 0.5rem 2rem;
+    text-align: left;
+    line-height: 1.3rem;
+  }
+  .cardBuy {
+    display: flex;
+    padding: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--third-color);
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
+  }
+
+  .cardBuy input {
+    width: 30%;
+    border-radius: 10px;
+    border: 1px solid var(--third-color);
+    text-align: center;
+    margin: 2em;
+  }
+
+  .cardBuy .price {
+    width: 30%;
+    text-align: center;
+  }
+
+  .cardBuy button {
+    background-color: var(--third-color);
+    color: rgb(0, 4, 7);
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    width: 40%;
+  }
+
   footer {
     display: flex;
     flex-direction: row;
