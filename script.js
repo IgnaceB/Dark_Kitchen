@@ -281,24 +281,8 @@ for (let i = 0; i < categories.length; i++) {
 
 const createCard = (i) => {
   // initializing the card
+
   let card = document.createElement(`div`);
-  // click on the card
-  card.addEventListener(`click`, () => {
-    // push in the cart array
-    cart.push(food[i]);
-    let listname = document.createElement(`li`);
-    let listprice = document.createElement(`li`);
-    let listspace = document.createElement(`ul`);
-    listname.innerText = cart[click].name;
-    listprice.innerText = cart[click].price.toFixed(2) + `€`;
-    listspace.appendChild(listname);
-    listspace.appendChild(listprice);
-    totalcontainer.insertBefore(listspace, totalstring);
-    // increment the total price of the cart
-    totalfloat += cart[click].price;
-    totalstring.innerText = totalfloat.toFixed(2) + `€`;
-    click++;
-  });
 
   // adding the picture
   let picture = document.createElement(`img`);
@@ -312,26 +296,137 @@ const createCard = (i) => {
   card.appendChild(paragraph1);
   paragraph1.appendChild(name);
 
+  // adding the cardText
+  let cardText = document.createElement(`div`);
+  cardText.className = "cardText";
+  card.appendChild(cardText);
+
   // adding the category
   let paragraph2 = document.createElement(`p`);
   let category = document.createTextNode(food[i].category);
   paragraph2.className = "category";
-  card.appendChild(paragraph2);
+  cardText.appendChild(paragraph2);
   paragraph2.appendChild(category);
 
   // adding the description
   let paragraph3 = document.createElement(`p`);
   let description = document.createTextNode(food[i].description);
   paragraph3.className = "description";
-  card.appendChild(paragraph3);
+  cardText.appendChild(paragraph3);
   paragraph3.appendChild(description);
+
+  let cardBuy = document.createElement(`div`);
+  cardBuy.className = "cardBuy";
+  card.appendChild(cardBuy);
 
   // adding the price
   let paragraph4 = document.createElement(`p`);
   let price = document.createTextNode(food[i].price.toFixed(2) + `€`);
   paragraph4.className = "price";
-  card.appendChild(paragraph4);
+  cardBuy.appendChild(paragraph4);
   paragraph4.appendChild(price);
+
+  // adding the button
+
+  let addbutton = document.createElement(`button`);
+  addbutton.textContent = `add`;
+  addbutton.value = food[i].name;
+
+  // adding input for quantity
+  let addInput = document.createElement(`input`);
+  addInput.id = `input ${food[i].name}`;
+  addInput.type = "number";
+  addInput.value = "1";
+  let selectedQuantity = "1";
+  addInput.addEventListener("keyup", (event) => {
+    selectedQuantity = event.target.value;
+  });
+  cardBuy.appendChild(addInput);
+
+  // click on the button
+  addbutton.addEventListener(`click`, (event) => {
+    if (multiplefood.includes(event.target.value)) {
+      let quantity = document.getElementById(`q ${event.target.value}`);
+
+      let a = quantity.textContent;
+      quantity.textContent = parseInt(a) + parseInt(selectedQuantity);
+    } else {
+      // push in the cart array
+      cart.push(food[i]);
+      let list = document.createElement(`li`);
+      let listprice = document.createElement(`p`); // appending it to the minusplus div below
+      let listquantity = document.createElement(`p`);
+      listquantity.textContent = selectedQuantity;
+      listquantity.id = `q ${food[i].name}`;
+      let listname = document.createElement(`p`);
+      listname.innerText = food[i].name;
+      listprice.innerText = food[i].price.toFixed(2) + `€`;
+
+      list.appendChild(listquantity);
+      list.appendChild(listname);
+      listspace.appendChild(list);
+
+      totalcontainer.insertBefore(listspace, totalstring);
+
+      // - + buttons
+      let minusplus = document.createElement(`div`);
+      let minusbutton = document.createElement(`p`);
+      minusbutton.className = `buttonaddremove`;
+      minusbutton.innerText = `-`;
+      let plusbutton = document.createElement(`p`);
+      plusbutton.className = `buttonaddremove`;
+      plusbutton.innerText = `+`;
+      // remove 1 or add 1
+      minusbutton.addEventListener(`click`, () => {
+        if (listquantity.textContent != 0) {
+          listquantity.textContent = parseInt(listquantity.textContent) - 1;
+          totalfloat -= food[i].price.toFixed(2);
+          totalfloat.toFixed(2);
+          totalstring.innerText = totalfloat.toFixed(2) + `€`;
+          if (listquantity.textContent == 0) {
+            cart.splice(i, 1);
+            list.remove();
+            for (let y = 0; y < multiplefood.length; y++) {
+              if (multiplefood[y] == food[i].name) {
+                multiplefood.splice(y, 1);
+                if (multiplefood.includes(food[i].name)) {
+                  multiplefood.splice(y, 1);
+                  if (multiplefood.includes(food[i], name)) {
+                    multiplefood.splice(y, 1);
+                  }
+                }
+              }
+            }
+          }
+          /* console.log(multiplefood);
+          console.log(listquantity.textContent);
+          console.log(totalfloat.toFixed(2));
+          console.log(cart); */
+        }
+      });
+
+      plusbutton.addEventListener(`click`, (event) => {
+        listquantity.textContent = parseInt(listquantity.textContent) + 1;
+        totalfloat += food[i].price;
+
+        totalstring.innerText = totalfloat.toFixed(2) + `€`;
+
+        console.log(totalfloat.toFixed(2));
+        console.log(cart);
+      });
+
+      minusplus.appendChild(listprice); // appending it to the minus plus div for flex uses
+      minusplus.appendChild(minusbutton);
+      minusplus.appendChild(plusbutton);
+      list.appendChild(minusplus);
+    }
+    multiplefood.push(event.target.value);
+    // increment the total price of the cart
+    totalfloat += food[i].price * selectedQuantity;
+    totalstring.innerText = totalfloat.toFixed(2) + `€`;
+  });
+
+  cardBuy.appendChild(addbutton);
 
   // set ID
   card.setAttribute("id", food[i].name);
@@ -404,4 +499,14 @@ const createButtonCart = () => {
 };
 createButtonCart();
 // Append the container of total to the nav
-document.querySelector(`nav`).appendChild(totalcontainer);
+document.querySelector(`nav`).insertBefore(totalcontainer, menuCat);
+
+// add event listener for opening cart menu
+document.getElementById("shopping-cart").addEventListener("click", (event) => {
+  if (document.getElementById("total").style.display == "block") {
+    document.getElementById("total").style.display = "none";
+  } else {
+    console.log(document.getElementById("total").style.display);
+    document.getElementById("total").style.display = "block";
+  }
+});

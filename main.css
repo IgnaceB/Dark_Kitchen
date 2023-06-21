@@ -29,7 +29,6 @@ body {
   }
 
   /* to change later */
- 
 
   #main {
     display: flex;
@@ -51,58 +50,61 @@ body {
     width: 100%;
   }
 
+  #container > div {
+    margin-bottom: 2em;
+  }
   #container img {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    transition: 0.5s;
-    z-index: 1;
-    transform: translateY(0px);
   }
 
-  #container img:hover {
-    transform: translateY(0px);
-  }
-
-  .cardText {
-    transform: translateY(-100px);
-    z-index: 2;
-    position: absolute;
-    color: white;
+  .name {
     font-size: 1rem;
     font-weight: bold;
     text-align: center;
-    background-color: rgba(0, 0, 0, 0.32);
     border-radius: 10px;
-    transition: 0.7s;
-    opacity: 0;
   }
 
-  .cardText:hover {
-    opacity: 1;
-    transform: translateY(0px);
+  .cardText {
+    color: black;
+    text-align: center;
+    margin: 1rem;
+    text-align: left;
+    line-height: 1.3rem;
   }
-
-  .cardText::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 20px);
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    transition: 0.7s;
-    opacity: 0;
-  }
-
-  #container > div {
+  .cardBuy {
     display: flex;
-    flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-    margin: 15px;
-    border-radius: 10px;
+    padding: 5px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #dd8080;
   }
 
+  .cardBuy input {
+    width: 30%;
+    border-radius: 10px;
+    border: 1px solid #dd8080;
+    text-align: center;
+    margin: 2em;
+  }
+
+  .cardBuy .price {
+    width: 30%;
+    text-align: center;
+  }
+
+  .cardBuy button {
+    background-color: #dd8080;
+    color: rgb(0, 4, 7);
+    border: none;
+    border-radius: 10px;
+    padding: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    width: 40%;
+  }
   footer {
     display: flex;
     flex-direction: column;
@@ -110,7 +112,7 @@ body {
     line-height: 30px;
   }
 
-  #footer-icon {
+  . #footer-icon {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -120,107 +122,97 @@ body {
   }
 }
 /* WORK IGNACE*/
-nav>#total{
-  width:45%;
-  position:absolute;
+nav > #total {
+  width: 45%;
+  position: absolute;
   right: 10px;
-  display:none;
-  background-color:white;
-  border: 1px solid ;
-  z-index:2;
+  display: none;
+  background-color: white;
+  border: 1px solid;
+  z-index: 2;
   margin-top: -10px;
-padding: 10px;
+  padding: 10px;
 }
 
 nav {
-width: 100%;
-padding: 5%;
-display: flex;
-flex-wrap: wrap;
-align-items: : center;
-justify-content: space-between;
-box-sizing: border-box;
-
-}
-nav>input{
-  width:45%;
-  height:25px;
-  
-}
-#shopping-cart{
-  width: 25px;
-cursor: pointer;
-z-index: 3;
-}
-#shopping-cart>svg{
-  
-  color:#665d5d;
-  border-radius: 5px;
-}
-
-#shopping-cart>svg:hover{
-  background-color: #f0fbf0;
-  color:black;
-  border-radius: 5px;
-}
-#category{
+  width: 100%;
+  padding: 5%;
   display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-margin-top: 10px;
-min-width: 100vw;
-margin-left: -6%;
-background: antiquewhite;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+}
+nav > input {
+  width: 45%;
+  height: 25px;
+}
+#shopping-cart {
+  width: 25px;
+  cursor: pointer;
+  z-index: 3;
+}
+#shopping-cart > svg {
+  color: #665d5d;
+  border-radius: 5px;
 }
 
- #category > div {
-color: #665d5d;
-padding: 0;
-font-size: 0.8rem;
-font-weight: bold;
-min-width: 60px;
-text-align: center;
-font-family: calibri;
-cursor: pointer;
-margin: 0;
-background-color: antiquewhite;
-  }
- #category > div:hover {
-    background-color: #665d5d;
+#shopping-cart > svg:hover {
+  background-color: #f0fbf0;
+  color: black;
+  border-radius: 5px;
+}
+#category {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  min-width: 100vw;
+  margin-left: -6%;
+  background: antiquewhite;
+}
 
-color: #f0fbf0;
+#category > div {
+  color: #665d5d;
+  padding: 0;
+  font-size: 0.8rem;
+  font-weight: bold;
+  min-width: 60px;
+  text-align: center;
+  font-family: calibri;
+  cursor: pointer;
+  margin: 0;
+  background-color: antiquewhite;
+}
+#category > div:hover {
+  background-color: #665d5d;
 
-  }
-  #category >div >div{
-  height:30px;
+  color: #f0fbf0;
+}
+#category > div > div {
+  height: 30px;
   background: white;
-border: solid 1px antiquewhite;
+  border: solid 1px antiquewhite;
 }
 
-  #category >div:hover >div{
-  height:30px;
-  color:#665d5d;
-border: solid 1px antiquewhite;
+#category > div:hover > div {
+  height: 30px;
+  color: #665d5d;
+  border: solid 1px antiquewhite;
 }
-  #category >div >div:hover{
-  height:30px;
-  color:color: #665d5d;
-  background-color:antiquewhite;
-border: solid 1px antiquewhite;
+#category > div > div:hover {
+  height: 30px;
+  color: #665d5d;
+  background-color: antiquewhite;
+  border: solid 1px antiquewhite;
 }
 
-
-#category>div>div>p{
-  margin:0;
-  height:100%;
-  width:100%;
+#category > div > div > p {
+  margin: 0;
+  height: 100%;
+  width: 100%;
   padding-top: 5px;
- 
-
 }
-
-
-
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
   h1 {
@@ -287,61 +279,13 @@ border: solid 1px antiquewhite;
   }
 
   #description {
-    width: 100%;
+    width: 50%;
   }
   #container img {
     width: 100%;
     height: 100%;
     border-radius: 10px;
-    transition: 0.5s;
-    z-index: 1;
-    transform: translateY(0px);
   }
-
-  #container img:hover {
-    transform: translateY(0px);
-  }
-
-  .cardText {
-    transform: translateY(-100px);
-    z-index: 2;
-    position: absolute;
-    color: aliceblue;
-    font-size: 1rem;
-    font-weight: bold;
-    text-align: center;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    transition: 0.7s;
-    opacity: 0;
-  }
-
-  .cardText:hover {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-
-  .cardText::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: calc(100% - 20px);
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px;
-    transition: 0.7s;
-    opacity: 0;
-  }
-
-  #container > div {
-    display: flex;
-    flex-direction: column;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 50px;
-    margin: 15px;
-    border-radius: 10px;
-  }
-
   footer {
     display: flex;
     flex-direction: row;
