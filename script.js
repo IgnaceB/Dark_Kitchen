@@ -272,15 +272,11 @@ const SelectCategory = (event) => {
   });
 };
 
-
-
 /*init menu of categories*/
 
 for (let i = 0; i < categories.length; i++) {
   createMenuCat(i, menuCat);
 }
-
-
 
 // Defining function to create cards
 
@@ -506,28 +502,59 @@ document.getElementById("shopping-cart").addEventListener("click", (event) => {
     console.log(document.getElementById("total").style.display);
     document.getElementById("total").style.display = "flex";
   }
-
-})
+});
 
 // add event listener to display the category
-document.getElementById("trigger").addEventListener("click",(event)=>{
- if (menuCat.style.visibility=="visible"){
-    menuCat.style.visibility="hidden"
-    menuCat.style.transform="translateY(0px)"
-    menuCat.style.width="0px"
+document.getElementById("trigger").addEventListener("click", (event) => {
+  if (menuCat.style.visibility == "visible") {
+    menuCat.style.visibility = "hidden";
+    menuCat.style.transform = "translateY(0px)";
+    menuCat.style.width = "0px";
 
-document.getElementById("trigger").querySelector("svg").style.transform="rotate(0deg)"
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(0deg)";
+  } else {
+    menuCat.style.visibility = "visible";
+    menuCat.style.width = "100vw";
+    menuCat.style.transform = "translateY(700px)";
 
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(180deg)";
   }
-  else{
-    
-  menuCat.style.visibility="visible"
-  menuCat.style.width="100vw"
-  menuCat.style.transform="translateY(700px)"
+});
 
-document.getElementById("trigger").querySelector("svg").style.transform="rotate(180deg)"
+const toggleSwitch = document.querySelector(
+  '.theme-switch input[type="checkbox"]'
+);
 
-}})
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+  }
+}
 
+toggleSwitch.addEventListener("change", switchTheme, false);
 
+function switchTheme(e) {
+  if (e.target.checked) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    localStorage.setItem("theme", "dark"); //add this
+  } else {
+    document.documentElement.setAttribute("data-theme", "light");
+    localStorage.setItem("theme", "light"); //add this
+  }
+}
 
+const currentTheme = localStorage.getItem("theme")
+  ? localStorage.getItem("theme")
+  : null;
+
+if (currentTheme) {
+  document.documentElement.setAttribute("data-theme", currentTheme);
+
+  if (currentTheme === "dark") {
+    toggleSwitch.checked = true;
+  }
+}
