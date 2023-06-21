@@ -183,11 +183,11 @@ display: flex;
 visibility: hidden;
 z-index: 2;
 flex-direction: column;
-max-width: 30vw;
 background: var(--second-color);
 height:100%;
-margin-top:-500px;
+margin-top:-700px;
 transition: all 2s;
+overflow: visible;
 width:0px;
 }
 
@@ -214,28 +214,28 @@ background-color: var(--main-color);
     text-transform: capitalize;
   }
  #category > div:hover {
-    background-color: #665d5d;
+    background-color: var(--second-color);
 
 color: #f0fbf0;
 
   }
   #category >div >div{
   height:30px;
+  width:100%;
+  margin-left:15px;
   background: white;
-border: solid 1px antiquewhite;
 
 }
 
   #category >div:hover >div{
   height:30px;
-  color:#665d5d;
-border: solid 1px antiquewhite;
+  color:var(--second-color);
 }
   #category >div >div:hover{
   height:30px;
-  color:color: #665d5d;
-  background-color:antiquewhite;
-border: solid 1px antiquewhite;
+  color: var(--main-color);
+  background-color:var(--second-color);
+
 }
 
 
@@ -257,6 +257,7 @@ color: var(--fourth-color);
 }
 #trigger>svg{
   transition: transform 0.7s;
+  cursor:pointer;
 }
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {

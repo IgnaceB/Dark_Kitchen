@@ -490,8 +490,8 @@ document.getElementById("trigger").querySelector("svg").style.transform="rotate(
   else{
     
   menuCat.style.visibility="visible"
-  menuCat.style.width="30vw"
-  menuCat.style.transform="translateY(500px)"
+  menuCat.style.width="100vw"
+  menuCat.style.transform="translateY(700px)"
 
 document.getElementById("trigger").querySelector("svg").style.transform="rotate(180deg)"
 
