@@ -190,8 +190,8 @@ z-index: 3;
 }
 
 #shopping-cart>svg:hover{
-  background-color: var(--second-color);
-  color: var(--font-color);
+  background-color: var(--#82816d);
+  color:black;
   border-radius: 5px;
 }
 #category{
