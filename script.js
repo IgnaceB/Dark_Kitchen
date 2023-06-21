@@ -304,6 +304,7 @@ const createCard = (i) => {
   paragraph1.className = "name";
   card.appendChild(paragraph1);
   paragraph1.appendChild(name);
+  
 
   // adding the category
   let paragraph2 = document.createElement(`p`);
@@ -311,6 +312,7 @@ const createCard = (i) => {
   paragraph2.className = "category";
   card.appendChild(paragraph2);
   paragraph2.appendChild(category);
+  paragraph2.style.display="none"
 
   // adding the description
   let paragraph3 = document.createElement(`p`);
@@ -318,6 +320,7 @@ const createCard = (i) => {
   paragraph3.className = "description";
   card.appendChild(paragraph3);
   paragraph3.appendChild(description);
+  paragraph3.style.display="none"
 
   // adding the price
   let paragraph4 = document.createElement(`p`);
@@ -325,12 +328,14 @@ const createCard = (i) => {
   paragraph4.className = "price";
   card.appendChild(paragraph4);
   paragraph4.appendChild(price);
+  paragraph4.style.display="block"
 
   // adding the button
 
   let addbutton = document.createElement(`button`);
   addbutton.textContent = `add`;
   addbutton.value = food[i].name;
+
 
   // adding input for quantity
   let addInput = document.createElement(`input`);
@@ -342,6 +347,16 @@ const createCard = (i) => {
     selectedQuantity = event.target.value;
   });
   card.appendChild(addInput);
+
+  picture.addEventListener("click",(event)=>{
+    console.log("ca marche?")
+    picture.style.transform="translateX(300px)"
+   setTimeout(()=>{(picture.style.transform="translateX(0px)")},6000)
+   paragraph2.style.display='block'
+   paragraph3.style.display='block'
+    /*sleep(2000).then()
+    picture.style.transform="translateX(0px)"*/
+  })
 
   // click on the button
   addbutton.addEventListener(`click`, (event) => {
