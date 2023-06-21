@@ -28,16 +28,20 @@ body {
     flex-direction: row;
   }
 
-  /* to change later 
   #category > div {
-    background-color: rgba(243, 247, 239, 0.56);
-    color: aliceblue;
+    background-color: rgba(113, 185, 41, 0.56);
+    color: black;
     border-radius: 10px;
     margin: 5px;
     font-size: 0.8rem;
     font-weight: bold;
   }
-*/
+
+  #category > div:onclick {
+    background-color: rgba(243, 247, 239, 0.8);
+    color: black;
+  }
+
   #main {
     display: flex;
     justify-content: center;
@@ -67,10 +71,6 @@ body {
     transform: translateY(0px);
   }
 
-  #container img:hover {
-    transform: translateY(0px);
-  }
-
   .cardText {
     transform: translateY(-100px);
     z-index: 2;
@@ -83,6 +83,11 @@ body {
     border-radius: 10px;
     transition: 0.7s;
     opacity: 0;
+    width: 82%;
+  }
+
+  .cardText #container img {
+    width: 100%;
   }
 
   .cardText:hover {
@@ -139,6 +144,25 @@ body {
     font-family: "Raleway Dots", cursive;
   }
 
+  #category {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 80vw;
+}
+  }
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    /*fix position on screen so it scrolls*/
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    height: 10vh;
+    justify-content: space-between;
+  }
   #main {
     flex-direction: row;
     justify-content: space-evenly;
@@ -175,6 +199,22 @@ body {
 }
 
 @media only screen and (min-width: 1025px) {
+  nav {
+    display: flex;
+    flex-direction: row;
+    /*fix position on screen so it scrolls*/
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    height: 10vh;
+    justify-content: space-between;
+  }
+
+  #category {
+    display: flex;
+    flex-direction: row;
+  }
+
   #container {
     display: flex;
     flex-wrap: wrap;
