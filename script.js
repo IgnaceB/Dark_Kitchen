@@ -271,11 +271,16 @@ const SelectCategory = (event) => {
     position.appendChild(createDiv);
   });
 };
+
+
+
 /*init menu of categories*/
 
 for (let i = 0; i < categories.length; i++) {
   createMenuCat(i, menuCat);
 }
+
+
 
 // Defining function to create cards
 
@@ -361,15 +366,18 @@ const createCard = (i) => {
       let listname = document.createElement(`p`);
       listname.innerText = food[i].name;
       listprice.innerText = food[i].price.toFixed(2) + `€`;
-
-      list.appendChild(listquantity);
-      list.appendChild(listname);
+      let numName = document.createElement(`div`);
+      numName.className = `numName`;
+      numName.appendChild(listquantity);
+      numName.appendChild(listname);
+      list.appendChild(numName);
       listspace.appendChild(list);
 
       totalcontainer.insertBefore(listspace, totalstring);
 
       // - + buttons
       let minusplus = document.createElement(`div`);
+      minusplus.className = `minusplus`;
       let minusbutton = document.createElement(`p`);
       minusbutton.className = `buttonaddremove`;
       minusbutton.innerText = `-`;
@@ -382,7 +390,7 @@ const createCard = (i) => {
           listquantity.textContent = parseInt(listquantity.textContent) - 1;
           totalfloat -= food[i].price.toFixed(2);
           totalfloat.toFixed(2);
-          totalstring.innerText = totalfloat.toFixed(2) + `€`;
+          totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
           if (listquantity.textContent == 0) {
             cart.splice(i, 1);
             list.remove();
@@ -391,7 +399,7 @@ const createCard = (i) => {
                 multiplefood.splice(y, 1);
                 if (multiplefood.includes(food[i].name)) {
                   multiplefood.splice(y, 1);
-                  if (multiplefood.includes(food[i], name)) {
+                  if (multiplefood.includes(food[i].name)) {
                     multiplefood.splice(y, 1);
                   }
                 }
@@ -409,21 +417,18 @@ const createCard = (i) => {
         listquantity.textContent = parseInt(listquantity.textContent) + 1;
         totalfloat += food[i].price;
 
-        totalstring.innerText = totalfloat.toFixed(2) + `€`;
-
-        console.log(totalfloat.toFixed(2));
-        console.log(cart);
+        totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
       });
 
-      minusplus.appendChild(listprice); // appending it to the minus plus div for flex uses
       minusplus.appendChild(minusbutton);
       minusplus.appendChild(plusbutton);
+      minusplus.appendChild(listprice); // appending it to the minus plus div for flex uses
       list.appendChild(minusplus);
     }
     multiplefood.push(event.target.value);
     // increment the total price of the cart
     totalfloat += food[i].price * selectedQuantity;
-    totalstring.innerText = totalfloat.toFixed(2) + `€`;
+    totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
   });
 
   cardBuy.appendChild(addbutton);
@@ -495,18 +500,43 @@ createFormCart();
 const createButtonCart = () => {
   let buybutton = document.createElement(`button`);
   buybutton.className = `cartbutton`;
+  buybutton.textContent = `Pay`;
   totalcontainer.appendChild(buybutton);
 };
 createButtonCart();
 // Append the container of total to the nav
-document.querySelector(`nav`).insertBefore(totalcontainer, menuCat);
+document.querySelector(`nav`).appendChild(totalcontainer);
 
 // add event listener for opening cart menu
 document.getElementById("shopping-cart").addEventListener("click", (event) => {
-  if (document.getElementById("total").style.display == "block") {
+  if (document.getElementById("total").style.display == "flex") {
     document.getElementById("total").style.display = "none";
   } else {
     console.log(document.getElementById("total").style.display);
-    document.getElementById("total").style.display = "block";
+    document.getElementById("total").style.display = "flex";
   }
-});
+
+})
+
+// add event listener to display the category
+document.getElementById("trigger").addEventListener("click",(event)=>{
+ if (menuCat.style.visibility=="visible"){
+    menuCat.style.visibility="hidden"
+    menuCat.style.transform="translateY(0px)"
+    menuCat.style.width="0px"
+
+document.getElementById("trigger").querySelector("svg").style.transform="rotate(0deg)"
+
+  }
+  else{
+    
+  menuCat.style.visibility="visible"
+  menuCat.style.width="100vw"
+  menuCat.style.transform="translateY(700px)"
+
+document.getElementById("trigger").querySelector("svg").style.transform="rotate(180deg)"
+
+}})
+
+
+
