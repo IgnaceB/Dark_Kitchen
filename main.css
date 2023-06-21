@@ -2,18 +2,20 @@
 
 :root {
     --main-color:#e5ffde;
-    --second-color:#82816d;
     --third-color:#ff934f;
     --fourth-color:#2b4162;
     --square:"□";
     --font-color:black;
 }
 
-/**{
+
+
+*{  
   color: inherit;
   color: var(--font-color);
   background-color: inherit;
-}*/
+  background-color: var(--main-color);
+}
 
 body {
   margin: 0;
@@ -182,13 +184,14 @@ z-index: 3;
 }
 #shopping-cart>svg{
   
-  color:#665d5d;
+  color: violet;
+  /* color: var(--font-color); */
   border-radius: 5px;
 }
 
 #shopping-cart>svg:hover{
-  background-color: #f0fbf0;
-  color:black;
+  background-color: var(--second-color);
+  color: var(--font-color);
   border-radius: 5px;
 }
 #category{
@@ -375,7 +378,7 @@ color: var(--fourth-color);
 }
 
 /* WORK NOAH */
-@media only screen and (max-width: 600px) {
+
 #total{
   font-family: calibri;
   border-radius: 10px;
@@ -389,7 +392,7 @@ color: var(--fourth-color);
 #total > ul > li {
   display: flex;
   flex-direction: column;
-  margin-left: -10vw;
+  margin-left: -45px
 }
 .numName {
   display: flex;
@@ -459,7 +462,7 @@ color: var(--fourth-color);
   background-color: var(--third-color);
   border: none;
 }
-}
+
 [data-theme="dark"] {
   --main-color:#82816d;
   --second-color:#e5ffde;

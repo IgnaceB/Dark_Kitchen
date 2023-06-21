@@ -243,24 +243,22 @@ const SelectCategory = (event) => {
       continue;
     }
   }
-let position = document.querySelector("." + cat);
+  let position = document.querySelector("." + cat);
   // looping on the array just updated, and create a div and a p for each value inside the element you clicked
   categories.forEach((element, index) => {
-
     let createP = document.createElement("p");
     let createDiv = document.createElement("div");
     createDiv.className = categories[index];
     createP.innerText = categories[index];
     createDiv.appendChild(createP);
-    createDiv.style.setProperty("--square", '"□"')
-
+    createDiv.style.setProperty("--square", '"□"');
 
     // creating special event listener that display the combine value of both
     createDiv.addEventListener("click", (event) => {
       container.replaceChildren();
-  
-      for (let l=0;l<position.children.length;l++){
-        position.children[l].style.setProperty("--square", '"□"')
+
+      for (let l = 0; l < position.children.length; l++) {
+        position.children[l].style.setProperty("--square", '"□"');
       }
       for (let i = 0; i < food.length; i++) {
         if (
@@ -272,12 +270,12 @@ let position = document.querySelector("." + cat);
           continue;
         }
       }
-      createDiv.style.setProperty("--square", '"▣"')
+      createDiv.style.setProperty("--square", '"▣"');
     });
     // positioning the subCat
     position.appendChild(createDiv);
   });
-  position.style.setProperty("--square", '"▣"')
+  position.style.setProperty("--square", '"▣"');
 };
 
 /*init menu of categories*/
@@ -519,19 +517,17 @@ document.getElementById("trigger").addEventListener("click", (event) => {
     menuCat.style.transform = "translateY(0px)";
     menuCat.style.width = "0px";
 
-    document.getElementById("trigger").querySelector("svg").style.transform ="rotate(0deg)";
-  } 
-  else{
-    
-  menuCat.style.visibility="visible"
-  menuCat.style.width="30%"
-  menuCat.style.transform="translateY(700px)"
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(0deg)";
+  } else {
+    menuCat.style.visibility = "visible";
+    menuCat.style.width = "30%";
+    menuCat.style.transform = "translateY(700px)";
 
-    document.getElementById("trigger").querySelector("svg").style.transform ="rotate(180deg)";
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(180deg)";
   }
-
 });
-
 
 const toggleSwitch = document.querySelector(
   '.theme-switch input[type="checkbox"]'
@@ -544,7 +540,6 @@ function switchTheme(e) {
     document.documentElement.setAttribute("data-theme", "light");
   }
 }
-
 
 toggleSwitch.addEventListener("change", switchTheme, false);
 
@@ -569,4 +564,3 @@ if (currentTheme) {
     toggleSwitch.checked = true;
   }
 }
-
