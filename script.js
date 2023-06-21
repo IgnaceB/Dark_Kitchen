@@ -272,15 +272,11 @@ const SelectCategory = (event) => {
   });
 };
 
-
-
 /*init menu of categories*/
 
 for (let i = 0; i < categories.length; i++) {
   createMenuCat(i, menuCat);
 }
-
-
 
 // Defining function to create cards
 
@@ -320,6 +316,7 @@ const createCard = (i) => {
   cardText.appendChild(paragraph3);
   paragraph3.appendChild(description);
 
+  // adding the cardBuy
   let cardBuy = document.createElement(`div`);
   cardBuy.className = "cardBuy";
   card.appendChild(cardBuy);
@@ -346,7 +343,7 @@ const createCard = (i) => {
   addInput.addEventListener("keyup", (event) => {
     selectedQuantity = event.target.value;
   });
-  cardBuy.appendChild(addInput);
+  card.appendChild(addInput);
 
   // click on the button
   addbutton.addEventListener(`click`, (event) => {
@@ -431,7 +428,7 @@ const createCard = (i) => {
     totalstring.innerText = `Total : ` + totalfloat.toFixed(2) + `€`;
   });
 
-  cardBuy.appendChild(addbutton);
+  card.appendChild(addbutton);
 
   // set ID
   card.setAttribute("id", food[i].name);
@@ -515,28 +512,23 @@ document.getElementById("shopping-cart").addEventListener("click", (event) => {
     console.log(document.getElementById("total").style.display);
     document.getElementById("total").style.display = "flex";
   }
-
-})
+});
 
 // add event listener to display the category
-document.getElementById("trigger").addEventListener("click",(event)=>{
- if (menuCat.style.visibility=="visible"){
-    menuCat.style.visibility="hidden"
-    menuCat.style.transform="translateY(0px)"
-    menuCat.style.width="0px"
+document.getElementById("trigger").addEventListener("click", (event) => {
+  if (menuCat.style.visibility == "visible") {
+    menuCat.style.visibility = "hidden";
+    menuCat.style.transform = "translateY(0px)";
+    menuCat.style.width = "0px";
 
-document.getElementById("trigger").querySelector("svg").style.transform="rotate(0deg)"
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(0deg)";
+  } else {
+    menuCat.style.visibility = "visible";
+    menuCat.style.width = "100vw";
+    menuCat.style.transform = "translateY(700px)";
 
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(180deg)";
   }
-  else{
-    
-  menuCat.style.visibility="visible"
-  menuCat.style.width="100vw"
-  menuCat.style.transform="translateY(700px)"
-
-document.getElementById("trigger").querySelector("svg").style.transform="rotate(180deg)"
-
-}})
-
-
-
+});
