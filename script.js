@@ -217,14 +217,6 @@ const SelectCategory = (event) => {
   } else {
     cat = event.target.className;
   }
-  menuCat.style.paddingLeft="70px"
-  menuCat.style.marginRight="70px"
-  document.querySelector(`.${cat}`).style.position="absolute"
-  document.querySelector(`.${cat}`).style.zIndex="3"
-   document.querySelector(`.${cat}`).style.marginLeft="-65px"
-   document.querySelector(`.${cat}`).style.width="65px"
-   document.querySelector(`.${cat}`).style.border="white solid 1px"
-      document.querySelector(`.${cat}`).style.borderTop="none"
 
 
 
@@ -281,11 +273,16 @@ const SelectCategory = (event) => {
     position.appendChild(createDiv);
   });
 };
+
+
+
 /*init menu of categories*/
 
 for (let i = 0; i < categories.length; i++) {
   createMenuCat(i, menuCat);
 }
+
+
 
 // Defining function to create cards
 let array = [];
@@ -468,7 +465,7 @@ const createButtonCart = () => {
 };
 createButtonCart();
 // Append the container of total to the nav
-document.querySelector(`nav`).insertBefore(totalcontainer, menuCat);
+document.querySelector(`nav`).appendChild(totalcontainer);
 
 // add event listener for opening cart menu
 document.getElementById("shopping-cart").addEventListener("click",(event)=>{
@@ -479,3 +476,24 @@ document.getElementById("shopping-cart").addEventListener("click",(event)=>{
     console.log(document.getElementById("total").style.display)
   document.getElementById("total").style.display="block"
 }})
+
+// add event listener to display the category
+document.getElementById("trigger").addEventListener("click",(event)=>{
+ if (menuCat.style.visibility=="visible"){
+    menuCat.style.visibility="hidden"
+    menuCat.style.transform="translateY(0px)"
+    menuCat.style.width="0px"
+
+document.getElementById("trigger").querySelector("svg").style.transform="rotate(0deg)"
+
+  }
+  else{
+    
+  menuCat.style.visibility="visible"
+  menuCat.style.width="30vw"
+  menuCat.style.transform="translateY(500px)"
+
+document.getElementById("trigger").querySelector("svg").style.transform="rotate(180deg)"
+
+}})
+
