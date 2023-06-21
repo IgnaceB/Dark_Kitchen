@@ -243,24 +243,22 @@ const SelectCategory = (event) => {
       continue;
     }
   }
-let position = document.querySelector("." + cat);
+  let position = document.querySelector("." + cat);
   // looping on the array just updated, and create a div and a p for each value inside the element you clicked
   categories.forEach((element, index) => {
-
     let createP = document.createElement("p");
     let createDiv = document.createElement("div");
     createDiv.className = categories[index];
     createP.innerText = categories[index];
     createDiv.appendChild(createP);
-    createDiv.style.setProperty("--square", '"□"')
-
+    createDiv.style.setProperty("--square", '"□"');
 
     // creating special event listener that display the combine value of both
     createDiv.addEventListener("click", (event) => {
       container.replaceChildren();
-  
-      for (let l=0;l<position.children.length;l++){
-        position.children[l].style.setProperty("--square", '"□"')
+
+      for (let l = 0; l < position.children.length; l++) {
+        position.children[l].style.setProperty("--square", '"□"');
       }
       for (let i = 0; i < food.length; i++) {
         if (
@@ -272,12 +270,12 @@ let position = document.querySelector("." + cat);
           continue;
         }
       }
-      createDiv.style.setProperty("--square", '"▣"')
+      createDiv.style.setProperty("--square", '"▣"');
     });
     // positioning the subCat
     position.appendChild(createDiv);
   });
-  position.style.setProperty("--square", '"▣"')
+  position.style.setProperty("--square", '"▣"');
 };
 
 /*init menu of categories*/
@@ -507,10 +505,18 @@ const createFormCart = () => {
 createFormCart();
 
 // Creating the buy button of the cart
+const openInNewTab = (url) => {
+  window.open(url, "_blank");
+};
 const createButtonCart = () => {
   let buybutton = document.createElement(`button`);
   buybutton.className = `cartbutton`;
   buybutton.textContent = `Pay`;
+  buybutton.addEventListener(`click`, () => {
+    openInNewTab(
+      "https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&cad=rja&uact=8&ved=2ahUKEwjR0MmeytT_AhU__7sIHVaRD1IQ3yx6BAgeEAI&url=https%3A%2F%2Fwww.youtube.com%2Fwatch%3Fv%3DdQw4w9WgXcQ&usg=AOvVaw0aHtehaphMhOCAkCydRLZU&opi=89978449"
+    );
+  });
   totalcontainer.appendChild(buybutton);
 };
 createButtonCart();
@@ -534,19 +540,17 @@ document.getElementById("trigger").addEventListener("click", (event) => {
     menuCat.style.transform = "translateY(0px)";
     menuCat.style.width = "0px";
 
-    document.getElementById("trigger").querySelector("svg").style.transform ="rotate(0deg)";
-  } 
-  else{
-    
-  menuCat.style.visibility="visible"
-  menuCat.style.width="30%"
-  menuCat.style.transform="translateY(700px)"
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(0deg)";
+  } else {
+    menuCat.style.visibility = "visible";
+    menuCat.style.width = "30%";
+    menuCat.style.transform = "translateY(700px)";
 
-    document.getElementById("trigger").querySelector("svg").style.transform ="rotate(180deg)";
+    document.getElementById("trigger").querySelector("svg").style.transform =
+      "rotate(180deg)";
   }
-
 });
-
 
 const toggleSwitch = document.querySelector(
   '.theme-switch input[type="checkbox"]'
@@ -560,16 +564,17 @@ function switchTheme(e) {
   }
 }
 
-
 toggleSwitch.addEventListener("change", switchTheme, false);
 
 function switchTheme(e) {
   if (e.target.checked) {
     document.documentElement.setAttribute("data-theme", "dark");
     localStorage.setItem("theme", "dark"); //add this
+    document.body.style.backgroundColor='gray'
   } else {
     document.documentElement.setAttribute("data-theme", "light");
     localStorage.setItem("theme", "light"); //add this
+    document.body.style.backgroundColor='white'
   }
 }
 
@@ -584,4 +589,3 @@ if (currentTheme) {
     toggleSwitch.checked = true;
   }
 }
-

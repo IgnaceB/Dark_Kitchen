@@ -2,17 +2,20 @@
 
 :root {
     --main-color:#e5ffde;
-    --second-color:#82816d;
     --third-color:#ff934f;
     --fourth-color:#2b4162;
     --square:"□";
     --font-color:black;
 }
 
-/**{
-  color: inherit;
+
+/*
+*{  
+  
   color: var(--font-color);
-  background-color: inherit;
+  
+  background-color: var(--main-color);
+  
 }*/
 
 body {
@@ -56,6 +59,7 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
+    justify-content: center;
    
   }
 
@@ -165,7 +169,7 @@ nav>#total{
   right: 10px;
   display:none;
   border: 1px solid ;
-  z-index:2;
+  z-index:4;
   margin-top: -10px;
   padding: 10px;
 }
@@ -189,16 +193,17 @@ nav>input{
 #shopping-cart{
   width: 25px;
 cursor: pointer;
-z-index: 3;
+z-index: 5;
 }
 #shopping-cart>svg{
   
-  color:#665d5d;
+  color: violet;
+  /* color: var(--font-color); */
   border-radius: 5px;
 }
 
 #shopping-cart>svg:hover{
-  background-color: #f0fbf0;
+  background-color: var(--#82816d);
   color:black;
   border-radius: 5px;
 }
@@ -386,7 +391,7 @@ color: var(--fourth-color);
 }
 
 /* WORK NOAH */
-@media only screen and (max-width: 600px) {
+
 #total{
   font-family: calibri;
   border-radius: 10px;
@@ -400,7 +405,7 @@ color: var(--fourth-color);
 #total > ul > li {
   display: flex;
   flex-direction: column;
-  margin-left: -10vw;
+  margin-left: -45px
 }
 .numName {
   display: flex;
@@ -470,7 +475,7 @@ color: var(--fourth-color);
   background-color: var(--third-color);
   border: none;
 }
-}
+
 [data-theme="dark"] {
   --main-color:#82816d;
   --second-color:#e5ffde;
@@ -541,6 +546,7 @@ input:checked + .slider:before {
 .slider.round:before {
   border-radius: 50%;
 }
+
   #main {
     display: flex;
     justify-content: center;
@@ -553,6 +559,7 @@ input:checked + .slider:before {
     flex-direction: row;
     flex-wrap: wrap;
     border-radius: 10px;
+    justify-content: space-around;
    
   }
 
@@ -560,6 +567,7 @@ input:checked + .slider:before {
     font-size: 20px;
     font-weight: bold;
     padding-left: 10px;
+    height:60px;
   }
   .price{
     font-size: 15px;
@@ -628,3 +636,4 @@ input:checked + .slider:before {
     height: auto;
     max-width: 300px;
   }
+
