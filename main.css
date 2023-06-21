@@ -182,7 +182,7 @@ z-index: 3;
 }
 
 #shopping-cart>svg:hover{
-  background-color: #f0fbf0;
+  background-color: var(--#82816d);
   color:black;
   border-radius: 5px;
 }
