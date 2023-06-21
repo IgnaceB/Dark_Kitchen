@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Raleway+Dots&display=swap");
 
+:root {
+    --main-color:#e5ffde;
+    --second-color:#82816d;
+    --third-color:#ff934f;
+    --fourth-color:#2b4162;
+;
+}
+
 body {
   margin: 0;
   box-sizing: border-box;
@@ -40,7 +48,7 @@ body {
     display: flex;
     flex-direction: column;
     border-radius: 10px;
-    width: 90vw;
+   
   }
 
   .name {
@@ -125,6 +133,10 @@ body {
 
 
 /* WORK IGNACE*/
+main{
+  display: flex;
+  overflow: hidden;
+}
 nav>#total{
   width:45%;
   position:absolute;
@@ -144,6 +156,7 @@ flex-wrap: wrap;
 align-items: : center;
 justify-content: space-between;
 box-sizing: border-box;
+background-color:var(--main-color) ;
 
 }
 nav>input{
@@ -168,13 +181,16 @@ z-index: 3;
   border-radius: 5px;
 }
 #category{
-  display: flex;
-flex-direction: row;
-flex-wrap: wrap;
-margin-top: 10px;
-min-width: 100vw;
-margin-left: -6%;
-background: antiquewhite;
+display: flex;
+visibility: hidden;
+z-index: 2;
+flex-direction: column;
+background: var(--second-color);
+height:100%;
+margin-top:-700px;
+transition: all 2s;
+overflow: visible;
+width:0px;
 }
 
  #category > div {
@@ -187,30 +203,41 @@ text-align: center;
 font-family: calibri;
 cursor: pointer;
 margin: 0;
-background-color: antiquewhite;
+color : var(--fourth-color);
+background-color: var(--main-color);
+  }
+
+  #category>div>p{
+
+    margin: 0;
+    height: 100%;
+    padding-top: 12px;
+    padding-bottom:12px;
+    text-transform: capitalize;
   }
  #category > div:hover {
-    background-color: #665d5d;
+    background-color: var(--second-color);
 
 color: #f0fbf0;
 
   }
   #category >div >div{
   height:30px;
+  width:100%;
+  margin-left:15px;
   background: white;
-border: solid 1px antiquewhite;
+
 }
 
   #category >div:hover >div{
   height:30px;
-  color:#665d5d;
-border: solid 1px antiquewhite;
+  color:var(--second-color);
 }
   #category >div >div:hover{
   height:30px;
-  color:color: #665d5d;
-  background-color:antiquewhite;
-border: solid 1px antiquewhite;
+  color: var(--main-color);
+  background-color:var(--second-color);
+
 }
 
 
@@ -222,9 +249,18 @@ border: solid 1px antiquewhite;
  
 
 }
+.trigger{
+width: 25px;
+height: 25px;
+margin-top: 0px;
 
 
-
+color: var(--fourth-color);
+}
+#trigger>svg{
+  transition: transform 0.7s;
+  cursor:pointer;
+}
 
 @media only screen and (min-width: 601px) and (max-width: 1024px) {
   h1 {
